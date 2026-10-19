@@ -54,6 +54,9 @@ fn actual_tree_aliases_hidden_items_and_literal_question() {
 
 #[test]
 fn markdown_excerpts_are_exact_bounded_utf8_with_real_lines() {
+    let balanced = markdown_documents("balanced.md", &"meaningful context ".repeat(42), None);
+    assert_eq!(balanced.len(), 2);
+    assert!(balanced.iter().all(|doc| doc.text.len() > 300));
     let source = format!(
         "# One\nFirst paragraph.\n\n```rust\n# code, not a heading\n```\n\n# Two\n{}\n",
         "é 漢字 ".repeat(300)

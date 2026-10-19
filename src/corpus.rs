@@ -175,15 +175,18 @@ pub fn markdown_documents(source: &str, markdown: &str, url: Option<&str>) -> Ve
             let end = if rest.len() <= 700 {
                 rest.len()
             } else {
+                // Balance the final chunks rather than leaving an orphaned
+                // sentence fragment (which can outrank real context).
+                let target = rest.len().div_ceil(rest.len().div_ceil(700));
                 let end = rest
                     .char_indices()
                     .map(|(i, _)| i)
-                    .take_while(|&i| i <= 700)
+                    .take_while(|&i| i <= target)
                     .last()
                     .unwrap();
                 rest[..end]
                     .rfind(char::is_whitespace)
-                    .filter(|&i| i > 350)
+                    .filter(|&i| i > target / 2)
                     .unwrap_or(end)
             };
             let excerpt = rest[..end].trim();

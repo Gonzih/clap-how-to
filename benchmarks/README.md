@@ -18,7 +18,7 @@ product-specific synonyms. `Mode::Semantic` and `Mode::Lexical` expose ablations
 
 Across 20 fresh processes encoding one short question, model load median was
 37.5 ms (p95 49.4 ms); inference median 6.8 ms (p95 12.0 ms). The 30-document
-corpus took 172 ms to encode including initial model load. Ship a prepared index
+corpus took 277 ms to encode including initial model load. Ship a prepared index
 to avoid corpus inference on each invocation. These are local measurements,
 not latency bounds on other hardware. Debug builds are much slower.
 
@@ -46,3 +46,12 @@ development environment, with pinned local weights, max_length 128, masked mean
 pooling, L2 normalization and eval mode. Runtime users need none of that Python
 environment. `pocket-encoder` packages at about 8.7 MiB compressed; exact package
 size depends on included source and Cargo metadata.
+
+During integration we also compared the same-size retrieval-trained
+`TaylorAI/bge-micro-v2` (revision `3edf6d7de0faa426b09780416fe61009f26ae589`)
+in upstream and group-32 Q4 forms. It improved inbox retrieval but worsened file
+and focus questions on the same seven-question ICQ development snapshot; it did
+not establish an overall improvement. We retained the published MiniLM encoder,
+clarified actual command intent descriptions, and balanced document chunks to
+avoid orphaned fragments. Integration tests require the intended command among
+five suggestions; nearest-neighbor search still does not guarantee an answer.

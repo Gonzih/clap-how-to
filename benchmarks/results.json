@@ -12,7 +12,7 @@
     "upstream_model": "sentence-transformers/paraphrase-MiniLM-L3-v2",
     "upstream_revision": "4ca70771034acceecb2e72475f72050fcdde4ddc"
   },
-  "prepare_30_documents_ms": 171.613208,
+  "prepare_30_documents_ms": 277.250541,
   "short_question_processes": 20,
   "load_ms_median": 37.486458,
   "load_ms_p95": 49.388042,
@@ -30,7 +30,7 @@
   },
   "modes": [
     {
-      "elapsed_ms": 0.06125,
+      "elapsed_ms": 0.110333,
       "mode": "lexical",
       "mrr_at_5": 0.18444444444444444,
       "queries": 30,
@@ -280,7 +280,7 @@
       ]
     },
     {
-      "elapsed_ms": 108.878166,
+      "elapsed_ms": 264.515167,
       "mode": "semantic",
       "mrr_at_5": 0.7444444444444446,
       "queries": 30,
@@ -650,7 +650,7 @@
       ]
     },
     {
-      "elapsed_ms": 102.947,
+      "elapsed_ms": 253.897542,
       "mode": "hybrid",
       "mrr_at_5": 0.6861111111111112,
       "queries": 30,
@@ -1020,5 +1020,5 @@
       ]
     }
   ],
-  "retrieval_version": "clap-how-to 0.1.1"
+  "retrieval_version": "clap-how-to 0.1.2"
 }
