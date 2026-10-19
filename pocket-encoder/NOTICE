@@ -1,0 +1,15 @@
+pocket-encoder source: Copyright 2026 Gonzih, MIT (LICENSE).
+
+Bundled model and tokenizer:
+sentence-transformers/paraphrase-MiniLM-L3-v2
+https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L3-v2
+Revision 4ca70771034acceecb2e72475f72050fcdde4ddc
+Apache License 2.0 (assets/MODEL-LICENSE).
+Model authors: Sentence Transformers / UKPLab. Original publication:
+Nils Reimers and Iryna Gurevych, Sentence-BERT (EMNLP 2019).
+
+MODIFIED WEIGHTS: This distribution replaces the upstream F32 matrices with
+symmetric 4-bit, group-of-32 weights and F16 group scales. Original 1-D F32
+tensors, tokenizer and configuration are retained. Full upstream and bundled
+checksums are in assets/provenance.json. This is an independently prepared
+quantization, not an upstream-endorsed model or an accuracy guarantee.

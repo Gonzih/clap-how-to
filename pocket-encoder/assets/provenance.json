@@ -1,0 +1,17 @@
+{
+  "upstream_model": "sentence-transformers/paraphrase-MiniLM-L3-v2",
+  "upstream_revision": "4ca70771034acceecb2e72475f72050fcdde4ddc",
+  "upstream_sha256": {
+    "model.safetensors": "cf1e4e2d420c664973037c3c73125d7a8fc69952495093ef8f50596f8943a433",
+    "config.json": "fc00f0ca1c3380f17937a4050908dd2cf743c36bebe437cf448b8aa4e7ddfe4d",
+    "tokenizer.json": "a9576e4dadfe7f78f071a1c00ba6902cc83ec6ed7e9b590ee974950bd4d54393"
+  },
+  "bundled_sha256": "dabb40d5d98a22372c8921acf048cb54bb8bf6d781b1233b2a360d5125789c7e",
+  "quantization": "q4-symmetric-g32-f16-v1: round-to-even, [-7,7], nibble=q+8, low nibble first, float16 group scale=max(abs)/7; zero group scale=1",
+  "dimensions": 384,
+  "max_tokens": 128,
+  "pooling": "attention-masked mean; L2 normalized",
+  "tokenizer_sha256": "a9576e4dadfe7f78f071a1c00ba6902cc83ec6ed7e9b590ee974950bd4d54393",
+  "license": "Apache-2.0",
+  "network_at_build_or_inference": false
+}

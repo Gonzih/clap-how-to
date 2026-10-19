@@ -1,0 +1,1023 @@
+{
+  "measured_at": "2026-10-19T05:13:05.152182+00:00",
+  "machine": "Apple M4",
+  "rust": "rustc 1.99.0 (b940084d7 2026-09-28)",
+  "model": {
+    "dimensions": 384,
+    "id": "pocket-encoder/minilm-l3-q4-g32-v1",
+    "max_tokens": 128,
+    "pooling": "attention-masked mean; L2 normalized; no query prefix; right truncation",
+    "revision": "sha256:dabb40d5d98a22372c8921acf048cb54bb8bf6d781b1233b2a360d5125789c7e",
+    "tokenizer_sha256": "a9576e4dadfe7f78f071a1c00ba6902cc83ec6ed7e9b590ee974950bd4d54393",
+    "upstream_model": "sentence-transformers/paraphrase-MiniLM-L3-v2",
+    "upstream_revision": "4ca70771034acceecb2e72475f72050fcdde4ddc"
+  },
+  "prepare_30_documents_ms": 198.29691699999998,
+  "short_question_processes": 20,
+  "load_ms_median": 37.486458,
+  "load_ms_p95": 49.388042,
+  "inference_ms_median": 6.7924585,
+  "inference_ms_p95": 11.988166999999999,
+  "fidelity_to_pytorch_f32": {
+    "count": 64,
+    "min_cosine": 0.9546310409154734,
+    "mean_cosine": 0.9707319466280478
+  },
+  "rust_f32_to_pytorch_f32": {
+    "count": 64,
+    "min_cosine": 0.9999998893431892,
+    "mean_cosine": 0.9999999943509847
+  },
+  "modes": [
+    {
+      "elapsed_ms": 0.111834,
+      "mode": "lexical",
+      "mrr_at_5": 0.18444444444444444,
+      "queries": 30,
+      "top1": 3,
+      "top5": 9,
+      "results": [
+        {
+          "query": "protect me from losing everything",
+          "expected": "backup",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "bring back yesterday's work",
+          "expected": "restore",
+          "rank": null,
+          "matches": [
+            "id",
+            "verify",
+            "dns edit",
+            "profile",
+            "dm"
+          ]
+        },
+        {
+          "query": "erase a saved copy forever",
+          "expected": "delete",
+          "rank": null,
+          "matches": [
+            "restore"
+          ]
+        },
+        {
+          "query": "sign into my account",
+          "expected": "login",
+          "rank": null,
+          "matches": [
+            "wallet balance",
+            "import",
+            "embed",
+            "file receive"
+          ]
+        },
+        {
+          "query": "disconnect my account",
+          "expected": "logout",
+          "rank": null,
+          "matches": [
+            "wallet balance"
+          ]
+        },
+        {
+          "query": "change where my website name points",
+          "expected": "dns edit",
+          "rank": null,
+          "matches": [
+            "profile",
+            "dns scopes"
+          ]
+        },
+        {
+          "query": "Log in and configure OAuth scopes for DNS management",
+          "expected": "dns scopes",
+          "rank": 1,
+          "matches": [
+            "dns scopes",
+            "dns edit",
+            "login"
+          ]
+        },
+        {
+          "query": "put this app online",
+          "expected": "deploy",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "what went wrong on the server",
+          "expected": "logs",
+          "rank": 2,
+          "matches": [
+            "deploy",
+            "logs"
+          ]
+        },
+        {
+          "query": "why can't I reach the other computer",
+          "expected": "doctor",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "leave me alone so I can concentrate",
+          "expected": "mute",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "let people contact me again",
+          "expected": "unmute",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "tell a colleague something confidential",
+          "expected": "dm",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "has anybody written to me",
+          "expected": "inbox",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "which of my notes are still unsent",
+          "expected": "outbox",
+          "rank": null,
+          "matches": [
+            "changelog"
+          ]
+        },
+        {
+          "query": "share a document with a colleague",
+          "expected": "file send",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "save the attachment someone offered",
+          "expected": "file receive",
+          "rank": 2,
+          "matches": [
+            "backup",
+            "file receive"
+          ]
+        },
+        {
+          "query": "send the seller their money",
+          "expected": "pay",
+          "rank": 2,
+          "matches": [
+            "file send",
+            "pay"
+          ]
+        },
+        {
+          "query": "how much cash have I got",
+          "expected": "wallet balance",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "who operates this agent",
+          "expected": "profile",
+          "rank": 5,
+          "matches": [
+            "inbox",
+            "unmute",
+            "mute",
+            "file send",
+            "profile"
+          ]
+        },
+        {
+          "query": "what changed since the last release",
+          "expected": "changelog",
+          "rank": 1,
+          "matches": [
+            "changelog"
+          ]
+        },
+        {
+          "query": "get the latest release",
+          "expected": "update",
+          "rank": null,
+          "matches": [
+            "changelog"
+          ]
+        },
+        {
+          "query": "which public key belongs to me",
+          "expected": "id",
+          "rank": 1,
+          "matches": [
+            "id",
+            "dm"
+          ]
+        },
+        {
+          "query": "look up an answer in my notes",
+          "expected": "search",
+          "rank": null,
+          "matches": [
+            "changelog"
+          ]
+        },
+        {
+          "query": "represent these paragraphs as coordinates",
+          "expected": "embed",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "open a downloaded knowledge pack",
+          "expected": "import",
+          "rank": null,
+          "matches": [
+            "search",
+            "list",
+            "export"
+          ]
+        },
+        {
+          "query": "package my knowledge so I can share it",
+          "expected": "export",
+          "rank": 3,
+          "matches": [
+            "search",
+            "list",
+            "export"
+          ]
+        },
+        {
+          "query": "has this pack been corrupted",
+          "expected": "verify",
+          "rank": null,
+          "matches": []
+        },
+        {
+          "query": "what knowledge packs are installed",
+          "expected": "list",
+          "rank": 2,
+          "matches": [
+            "search",
+            "list",
+            "export"
+          ]
+        },
+        {
+          "query": "which arguments does this accept",
+          "expected": "help",
+          "rank": null,
+          "matches": []
+        }
+      ]
+    },
+    {
+      "elapsed_ms": 115.430167,
+      "mode": "semantic",
+      "mrr_at_5": 0.675,
+      "queries": 30,
+      "top1": 16,
+      "top5": 27,
+      "results": [
+        {
+          "query": "protect me from losing everything",
+          "expected": "backup",
+          "rank": 1,
+          "matches": [
+            "backup",
+            "delete",
+            "restore",
+            "dm",
+            "verify"
+          ]
+        },
+        {
+          "query": "bring back yesterday's work",
+          "expected": "restore",
+          "rank": 3,
+          "matches": [
+            "backup",
+            "unmute",
+            "restore",
+            "import",
+            "dm"
+          ]
+        },
+        {
+          "query": "erase a saved copy forever",
+          "expected": "delete",
+          "rank": 2,
+          "matches": [
+            "backup",
+            "delete",
+            "restore",
+            "export",
+            "mute"
+          ]
+        },
+        {
+          "query": "sign into my account",
+          "expected": "login",
+          "rank": 3,
+          "matches": [
+            "profile",
+            "id",
+            "login",
+            "wallet balance",
+            "logout"
+          ]
+        },
+        {
+          "query": "disconnect my account",
+          "expected": "logout",
+          "rank": null,
+          "matches": [
+            "wallet balance",
+            "login",
+            "id",
+            "pay",
+            "mute"
+          ]
+        },
+        {
+          "query": "change where my website name points",
+          "expected": "dns edit",
+          "rank": 1,
+          "matches": [
+            "dns edit",
+            "dns scopes",
+            "profile",
+            "id",
+            "changelog"
+          ]
+        },
+        {
+          "query": "Log in and configure OAuth scopes for DNS management",
+          "expected": "dns scopes",
+          "rank": 1,
+          "matches": [
+            "dns scopes",
+            "dns edit",
+            "login",
+            "logout",
+            "logs"
+          ]
+        },
+        {
+          "query": "put this app online",
+          "expected": "deploy",
+          "rank": 3,
+          "matches": [
+            "dm",
+            "id",
+            "deploy",
+            "verify",
+            "export"
+          ]
+        },
+        {
+          "query": "what went wrong on the server",
+          "expected": "logs",
+          "rank": 1,
+          "matches": [
+            "logs",
+            "doctor",
+            "dm",
+            "deploy",
+            "dns scopes"
+          ]
+        },
+        {
+          "query": "why can't I reach the other computer",
+          "expected": "doctor",
+          "rank": 2,
+          "matches": [
+            "dm",
+            "doctor",
+            "inbox",
+            "mute",
+            "unmute"
+          ]
+        },
+        {
+          "query": "leave me alone so I can concentrate",
+          "expected": "mute",
+          "rank": 1,
+          "matches": [
+            "mute",
+            "backup",
+            "restore",
+            "unmute",
+            "list"
+          ]
+        },
+        {
+          "query": "let people contact me again",
+          "expected": "unmute",
+          "rank": 2,
+          "matches": [
+            "dm",
+            "unmute",
+            "inbox",
+            "mute",
+            "file send"
+          ]
+        },
+        {
+          "query": "tell a colleague something confidential",
+          "expected": "dm",
+          "rank": 4,
+          "matches": [
+            "inbox",
+            "unmute",
+            "doctor",
+            "dm",
+            "profile"
+          ]
+        },
+        {
+          "query": "has anybody written to me",
+          "expected": "inbox",
+          "rank": 2,
+          "matches": [
+            "dm",
+            "inbox",
+            "id",
+            "profile",
+            "logout"
+          ]
+        },
+        {
+          "query": "which of my notes are still unsent",
+          "expected": "outbox",
+          "rank": null,
+          "matches": [
+            "id",
+            "login",
+            "mute",
+            "unmute",
+            "logs"
+          ]
+        },
+        {
+          "query": "share a document with a colleague",
+          "expected": "file send",
+          "rank": 1,
+          "matches": [
+            "file send",
+            "inbox",
+            "file receive",
+            "dm",
+            "profile"
+          ]
+        },
+        {
+          "query": "save the attachment someone offered",
+          "expected": "file receive",
+          "rank": null,
+          "matches": [
+            "file send",
+            "backup",
+            "outbox",
+            "export",
+            "inbox"
+          ]
+        },
+        {
+          "query": "send the seller their money",
+          "expected": "pay",
+          "rank": 1,
+          "matches": [
+            "pay",
+            "file send",
+            "wallet balance",
+            "dm",
+            "inbox"
+          ]
+        },
+        {
+          "query": "how much cash have I got",
+          "expected": "wallet balance",
+          "rank": 2,
+          "matches": [
+            "pay",
+            "wallet balance",
+            "outbox",
+            "file receive",
+            "inbox"
+          ]
+        },
+        {
+          "query": "who operates this agent",
+          "expected": "profile",
+          "rank": 1,
+          "matches": [
+            "profile",
+            "file send",
+            "dm",
+            "unmute",
+            "inbox"
+          ]
+        },
+        {
+          "query": "what changed since the last release",
+          "expected": "changelog",
+          "rank": 1,
+          "matches": [
+            "changelog",
+            "update",
+            "restore",
+            "dns edit",
+            "inbox"
+          ]
+        },
+        {
+          "query": "get the latest release",
+          "expected": "update",
+          "rank": 1,
+          "matches": [
+            "update",
+            "changelog",
+            "inbox",
+            "file receive",
+            "outbox"
+          ]
+        },
+        {
+          "query": "which public key belongs to me",
+          "expected": "id",
+          "rank": 1,
+          "matches": [
+            "id",
+            "dm",
+            "profile",
+            "verify",
+            "dns scopes"
+          ]
+        },
+        {
+          "query": "look up an answer in my notes",
+          "expected": "search",
+          "rank": 4,
+          "matches": [
+            "wallet balance",
+            "profile",
+            "help",
+            "search",
+            "verify"
+          ]
+        },
+        {
+          "query": "represent these paragraphs as coordinates",
+          "expected": "embed",
+          "rank": 1,
+          "matches": [
+            "embed",
+            "file send",
+            "outbox",
+            "help",
+            "search"
+          ]
+        },
+        {
+          "query": "open a downloaded knowledge pack",
+          "expected": "import",
+          "rank": 4,
+          "matches": [
+            "export",
+            "search",
+            "list",
+            "import",
+            "wallet balance"
+          ]
+        },
+        {
+          "query": "package my knowledge so I can share it",
+          "expected": "export",
+          "rank": 1,
+          "matches": [
+            "export",
+            "list",
+            "inbox",
+            "search",
+            "dm"
+          ]
+        },
+        {
+          "query": "has this pack been corrupted",
+          "expected": "verify",
+          "rank": 1,
+          "matches": [
+            "verify",
+            "inbox",
+            "restore",
+            "import",
+            "unmute"
+          ]
+        },
+        {
+          "query": "what knowledge packs are installed",
+          "expected": "list",
+          "rank": 1,
+          "matches": [
+            "list",
+            "export",
+            "search",
+            "import",
+            "backup"
+          ]
+        },
+        {
+          "query": "which arguments does this accept",
+          "expected": "help",
+          "rank": 1,
+          "matches": [
+            "help",
+            "verify",
+            "outbox",
+            "id",
+            "list"
+          ]
+        }
+      ]
+    },
+    {
+      "elapsed_ms": 95.90941699999999,
+      "mode": "hybrid",
+      "mrr_at_5": 0.6383333333333333,
+      "queries": 30,
+      "top1": 14,
+      "top5": 28,
+      "results": [
+        {
+          "query": "protect me from losing everything",
+          "expected": "backup",
+          "rank": 1,
+          "matches": [
+            "backup",
+            "delete",
+            "restore",
+            "dm",
+            "verify"
+          ]
+        },
+        {
+          "query": "bring back yesterday's work",
+          "expected": "restore",
+          "rank": 5,
+          "matches": [
+            "dm",
+            "backup",
+            "id",
+            "unmute",
+            "restore"
+          ]
+        },
+        {
+          "query": "erase a saved copy forever",
+          "expected": "delete",
+          "rank": 3,
+          "matches": [
+            "restore",
+            "backup",
+            "delete",
+            "export",
+            "mute"
+          ]
+        },
+        {
+          "query": "sign into my account",
+          "expected": "login",
+          "rank": 4,
+          "matches": [
+            "wallet balance",
+            "profile",
+            "id",
+            "login",
+            "file receive"
+          ]
+        },
+        {
+          "query": "disconnect my account",
+          "expected": "logout",
+          "rank": null,
+          "matches": [
+            "wallet balance",
+            "login",
+            "id",
+            "pay",
+            "mute"
+          ]
+        },
+        {
+          "query": "change where my website name points",
+          "expected": "dns edit",
+          "rank": 3,
+          "matches": [
+            "dns scopes",
+            "profile",
+            "dns edit",
+            "id",
+            "changelog"
+          ]
+        },
+        {
+          "query": "Log in and configure OAuth scopes for DNS management",
+          "expected": "dns scopes",
+          "rank": 1,
+          "matches": [
+            "dns scopes",
+            "dns edit",
+            "login",
+            "logout",
+            "logs"
+          ]
+        },
+        {
+          "query": "put this app online",
+          "expected": "deploy",
+          "rank": 3,
+          "matches": [
+            "dm",
+            "id",
+            "deploy",
+            "verify",
+            "export"
+          ]
+        },
+        {
+          "query": "what went wrong on the server",
+          "expected": "logs",
+          "rank": 1,
+          "matches": [
+            "logs",
+            "deploy",
+            "doctor",
+            "dm",
+            "dns scopes"
+          ]
+        },
+        {
+          "query": "why can't I reach the other computer",
+          "expected": "doctor",
+          "rank": 2,
+          "matches": [
+            "dm",
+            "doctor",
+            "inbox",
+            "mute",
+            "unmute"
+          ]
+        },
+        {
+          "query": "leave me alone so I can concentrate",
+          "expected": "mute",
+          "rank": 1,
+          "matches": [
+            "mute",
+            "backup",
+            "restore",
+            "unmute",
+            "list"
+          ]
+        },
+        {
+          "query": "let people contact me again",
+          "expected": "unmute",
+          "rank": 2,
+          "matches": [
+            "dm",
+            "unmute",
+            "inbox",
+            "mute",
+            "file send"
+          ]
+        },
+        {
+          "query": "tell a colleague something confidential",
+          "expected": "dm",
+          "rank": 4,
+          "matches": [
+            "inbox",
+            "unmute",
+            "doctor",
+            "dm",
+            "profile"
+          ]
+        },
+        {
+          "query": "has anybody written to me",
+          "expected": "inbox",
+          "rank": 2,
+          "matches": [
+            "dm",
+            "inbox",
+            "id",
+            "profile",
+            "logout"
+          ]
+        },
+        {
+          "query": "which of my notes are still unsent",
+          "expected": "outbox",
+          "rank": null,
+          "matches": [
+            "changelog",
+            "id",
+            "login",
+            "mute",
+            "unmute"
+          ]
+        },
+        {
+          "query": "share a document with a colleague",
+          "expected": "file send",
+          "rank": 1,
+          "matches": [
+            "file send",
+            "inbox",
+            "file receive",
+            "dm",
+            "profile"
+          ]
+        },
+        {
+          "query": "save the attachment someone offered",
+          "expected": "file receive",
+          "rank": 2,
+          "matches": [
+            "backup",
+            "file receive",
+            "file send",
+            "outbox",
+            "export"
+          ]
+        },
+        {
+          "query": "send the seller their money",
+          "expected": "pay",
+          "rank": 1,
+          "matches": [
+            "pay",
+            "file send",
+            "wallet balance",
+            "dm",
+            "inbox"
+          ]
+        },
+        {
+          "query": "how much cash have I got",
+          "expected": "wallet balance",
+          "rank": 2,
+          "matches": [
+            "pay",
+            "wallet balance",
+            "outbox",
+            "file receive",
+            "inbox"
+          ]
+        },
+        {
+          "query": "who operates this agent",
+          "expected": "profile",
+          "rank": 1,
+          "matches": [
+            "profile",
+            "file send",
+            "unmute",
+            "inbox",
+            "dm"
+          ]
+        },
+        {
+          "query": "what changed since the last release",
+          "expected": "changelog",
+          "rank": 1,
+          "matches": [
+            "changelog",
+            "update",
+            "restore",
+            "dns edit",
+            "inbox"
+          ]
+        },
+        {
+          "query": "get the latest release",
+          "expected": "update",
+          "rank": 2,
+          "matches": [
+            "changelog",
+            "update",
+            "inbox",
+            "file receive",
+            "outbox"
+          ]
+        },
+        {
+          "query": "which public key belongs to me",
+          "expected": "id",
+          "rank": 1,
+          "matches": [
+            "id",
+            "dm",
+            "profile",
+            "verify",
+            "dns scopes"
+          ]
+        },
+        {
+          "query": "look up an answer in my notes",
+          "expected": "search",
+          "rank": 5,
+          "matches": [
+            "changelog",
+            "wallet balance",
+            "profile",
+            "help",
+            "search"
+          ]
+        },
+        {
+          "query": "represent these paragraphs as coordinates",
+          "expected": "embed",
+          "rank": 1,
+          "matches": [
+            "embed",
+            "file send",
+            "outbox",
+            "help",
+            "search"
+          ]
+        },
+        {
+          "query": "open a downloaded knowledge pack",
+          "expected": "import",
+          "rank": 4,
+          "matches": [
+            "export",
+            "search",
+            "list",
+            "import",
+            "wallet balance"
+          ]
+        },
+        {
+          "query": "package my knowledge so I can share it",
+          "expected": "export",
+          "rank": 1,
+          "matches": [
+            "export",
+            "list",
+            "search",
+            "inbox",
+            "dm"
+          ]
+        },
+        {
+          "query": "has this pack been corrupted",
+          "expected": "verify",
+          "rank": 1,
+          "matches": [
+            "verify",
+            "inbox",
+            "restore",
+            "import",
+            "unmute"
+          ]
+        },
+        {
+          "query": "what knowledge packs are installed",
+          "expected": "list",
+          "rank": 1,
+          "matches": [
+            "list",
+            "search",
+            "export",
+            "import",
+            "backup"
+          ]
+        },
+        {
+          "query": "which arguments does this accept",
+          "expected": "help",
+          "rank": 1,
+          "matches": [
+            "help",
+            "verify",
+            "outbox",
+            "id",
+            "list"
+          ]
+        }
+      ]
+    }
+  ]
+}
