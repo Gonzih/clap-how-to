@@ -62,7 +62,8 @@ impl Document {
     }
 }
 
-/// Extract canonical visible commands, aliases, local arguments and possible values.
+/// Extract canonical visible commands, aliases, local arguments, possible values
+/// and after-help text (long form preferred).
 ///
 /// Operates on a clone; no parsing, completion handler, program execution or I/O.
 /// Hidden commands/arguments and generated help/discovery commands are omitted.
@@ -109,17 +110,24 @@ pub fn command_documents(command: &Command) -> Vec<Document> {
         };
         let aliases = command.get_visible_aliases().collect::<Vec<_>>().join(" ");
         let text = format!("{about}\n{arguments} {aliases}").trim().to_owned();
+        // Establish the existing intent/fallback before appending lexical-only
+        // details, including for commands with no about text or arguments.
+        let mut text = if text.is_empty() {
+            canonical.clone()
+        } else {
+            text
+        };
+        if let Some(details) = command.get_after_long_help().or(command.get_after_help()) {
+            text.push('\n');
+            text.push_str(&details.to_string());
+        }
         out.push(Document {
             title: if path.is_empty() {
                 program.into()
             } else {
                 path.into()
             },
-            text: if text.is_empty() {
-                canonical.clone()
-            } else {
-                text
-            },
+            text,
             source: Source::Command {
                 help: format!("{canonical} --help"),
                 command: canonical,

@@ -1,6 +1,6 @@
 [package]
 name = "clap-how-to"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2024"
 rust-version = "1.88"
 description = "Bundled offline semantic help search for Clap CLIs: how and how-to"

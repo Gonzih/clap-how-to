@@ -37,6 +37,11 @@ own handler and keep their own display, authorization, focus and lifecycle rules
 For Clap derive, add a `HowTo(HowToArgs)` variant with
 `#[command(name = "how-to", visible_alias = "how")]`.
 
+Command search includes local option help and `after_long_help` (or `after_help`).
+These details remain lexical evidence; neural command vectors use the existing
+first intent line. Rebuild prepared corpora after help changes. Model fingerprints
+validate coordinate compatibility, not whether source text is current.
+
 For short-lived CLIs, encode the corpus during development. Serialize
 `index.prepared()` and ship that JSON with `include_str!`; validate it with
 `Index::from_prepared`. Only the question needs inference at runtime. Rebuild
