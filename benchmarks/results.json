@@ -12,7 +12,7 @@
     "upstream_model": "sentence-transformers/paraphrase-MiniLM-L3-v2",
     "upstream_revision": "4ca70771034acceecb2e72475f72050fcdde4ddc"
   },
-  "prepare_30_documents_ms": 198.29691699999998,
+  "prepare_30_documents_ms": 171.613208,
   "short_question_processes": 20,
   "load_ms_median": 37.486458,
   "load_ms_p95": 49.388042,
@@ -30,7 +30,7 @@
   },
   "modes": [
     {
-      "elapsed_ms": 0.111834,
+      "elapsed_ms": 0.06125,
       "mode": "lexical",
       "mrr_at_5": 0.18444444444444444,
       "queries": 30,
@@ -280,11 +280,11 @@
       ]
     },
     {
-      "elapsed_ms": 115.430167,
+      "elapsed_ms": 108.878166,
       "mode": "semantic",
-      "mrr_at_5": 0.675,
+      "mrr_at_5": 0.7444444444444446,
       "queries": 30,
-      "top1": 16,
+      "top1": 19,
       "top5": 27,
       "results": [
         {
@@ -302,22 +302,22 @@
         {
           "query": "bring back yesterday's work",
           "expected": "restore",
-          "rank": 3,
+          "rank": 2,
           "matches": [
-            "backup",
             "unmute",
             "restore",
             "import",
-            "dm"
+            "backup",
+            "file send"
           ]
         },
         {
           "query": "erase a saved copy forever",
           "expected": "delete",
-          "rank": 2,
+          "rank": 1,
           "matches": [
-            "backup",
             "delete",
+            "backup",
             "restore",
             "export",
             "mute"
@@ -326,12 +326,12 @@
         {
           "query": "sign into my account",
           "expected": "login",
-          "rank": 3,
+          "rank": 2,
           "matches": [
             "profile",
-            "id",
             "login",
             "wallet balance",
+            "id",
             "logout"
           ]
         },
@@ -356,7 +356,7 @@
             "dns scopes",
             "profile",
             "id",
-            "changelog"
+            "logout"
           ]
         },
         {
@@ -374,13 +374,13 @@
         {
           "query": "put this app online",
           "expected": "deploy",
-          "rank": 3,
+          "rank": 4,
           "matches": [
             "dm",
-            "id",
-            "deploy",
             "verify",
-            "export"
+            "export",
+            "deploy",
+            "update"
           ]
         },
         {
@@ -390,18 +390,18 @@
           "matches": [
             "logs",
             "doctor",
-            "dm",
             "deploy",
-            "dns scopes"
+            "dns scopes",
+            "dm"
           ]
         },
         {
           "query": "why can't I reach the other computer",
           "expected": "doctor",
-          "rank": 2,
+          "rank": 1,
           "matches": [
-            "dm",
             "doctor",
+            "dm",
             "inbox",
             "mute",
             "unmute"
@@ -416,7 +416,7 @@
             "backup",
             "restore",
             "unmute",
-            "list"
+            "search"
           ]
         },
         {
@@ -434,25 +434,25 @@
         {
           "query": "tell a colleague something confidential",
           "expected": "dm",
-          "rank": 4,
+          "rank": 3,
           "matches": [
             "inbox",
             "unmute",
-            "doctor",
             "dm",
-            "profile"
+            "file send",
+            "mute"
           ]
         },
         {
           "query": "has anybody written to me",
           "expected": "inbox",
-          "rank": 2,
+          "rank": 1,
           "matches": [
-            "dm",
             "inbox",
+            "dm",
+            "logout",
             "id",
-            "profile",
-            "logout"
+            "profile"
           ]
         },
         {
@@ -460,11 +460,11 @@
           "expected": "outbox",
           "rank": null,
           "matches": [
+            "mute",
             "id",
             "login",
-            "mute",
             "unmute",
-            "logs"
+            "changelog"
           ]
         },
         {
@@ -474,8 +474,8 @@
           "matches": [
             "file send",
             "inbox",
-            "file receive",
             "dm",
+            "logout",
             "profile"
           ]
         },
@@ -485,10 +485,10 @@
           "rank": null,
           "matches": [
             "file send",
-            "backup",
             "outbox",
-            "export",
-            "inbox"
+            "backup",
+            "inbox",
+            "export"
           ]
         },
         {
@@ -499,8 +499,8 @@
             "pay",
             "file send",
             "wallet balance",
-            "dm",
-            "inbox"
+            "inbox",
+            "dm"
           ]
         },
         {
@@ -511,8 +511,8 @@
             "pay",
             "wallet balance",
             "outbox",
-            "file receive",
-            "inbox"
+            "inbox",
+            "dm"
           ]
         },
         {
@@ -523,8 +523,8 @@
             "profile",
             "file send",
             "dm",
-            "unmute",
-            "inbox"
+            "inbox",
+            "unmute"
           ]
         },
         {
@@ -548,7 +548,7 @@
             "changelog",
             "inbox",
             "file receive",
-            "outbox"
+            "id"
           ]
         },
         {
@@ -559,20 +559,20 @@
             "id",
             "dm",
             "profile",
-            "verify",
-            "dns scopes"
+            "wallet balance",
+            "verify"
           ]
         },
         {
           "query": "look up an answer in my notes",
           "expected": "search",
-          "rank": 4,
+          "rank": 2,
           "matches": [
             "wallet balance",
+            "search",
             "profile",
             "help",
-            "search",
-            "verify"
+            "changelog"
           ]
         },
         {
@@ -581,10 +581,10 @@
           "rank": 1,
           "matches": [
             "embed",
-            "file send",
             "outbox",
-            "help",
-            "search"
+            "search",
+            "file send",
+            "help"
           ]
         },
         {
@@ -606,8 +606,8 @@
           "matches": [
             "export",
             "list",
-            "inbox",
             "search",
+            "inbox",
             "dm"
           ]
         },
@@ -617,10 +617,10 @@
           "rank": 1,
           "matches": [
             "verify",
+            "import",
             "inbox",
             "restore",
-            "import",
-            "unmute"
+            "backup"
           ]
         },
         {
@@ -641,20 +641,20 @@
           "rank": 1,
           "matches": [
             "help",
-            "verify",
             "outbox",
             "id",
-            "list"
+            "verify",
+            "embed"
           ]
         }
       ]
     },
     {
-      "elapsed_ms": 95.90941699999999,
+      "elapsed_ms": 102.947,
       "mode": "hybrid",
-      "mrr_at_5": 0.6383333333333333,
+      "mrr_at_5": 0.6861111111111112,
       "queries": 30,
-      "top1": 14,
+      "top1": 16,
       "top5": 28,
       "results": [
         {
@@ -672,23 +672,23 @@
         {
           "query": "bring back yesterday's work",
           "expected": "restore",
-          "rank": 5,
+          "rank": 4,
           "matches": [
             "dm",
-            "backup",
-            "id",
             "unmute",
-            "restore"
+            "id",
+            "restore",
+            "import"
           ]
         },
         {
           "query": "erase a saved copy forever",
           "expected": "delete",
-          "rank": 3,
+          "rank": 2,
           "matches": [
             "restore",
-            "backup",
             "delete",
+            "backup",
             "export",
             "mute"
           ]
@@ -696,12 +696,12 @@
         {
           "query": "sign into my account",
           "expected": "login",
-          "rank": 4,
+          "rank": 3,
           "matches": [
             "wallet balance",
             "profile",
-            "id",
             "login",
+            "import",
             "file receive"
           ]
         },
@@ -726,7 +726,7 @@
             "profile",
             "dns edit",
             "id",
-            "changelog"
+            "logout"
           ]
         },
         {
@@ -744,13 +744,13 @@
         {
           "query": "put this app online",
           "expected": "deploy",
-          "rank": 3,
+          "rank": 4,
           "matches": [
             "dm",
-            "id",
-            "deploy",
             "verify",
-            "export"
+            "export",
+            "deploy",
+            "update"
           ]
         },
         {
@@ -761,17 +761,17 @@
             "logs",
             "deploy",
             "doctor",
-            "dm",
-            "dns scopes"
+            "dns scopes",
+            "dm"
           ]
         },
         {
           "query": "why can't I reach the other computer",
           "expected": "doctor",
-          "rank": 2,
+          "rank": 1,
           "matches": [
-            "dm",
             "doctor",
+            "dm",
             "inbox",
             "mute",
             "unmute"
@@ -786,7 +786,7 @@
             "backup",
             "restore",
             "unmute",
-            "list"
+            "search"
           ]
         },
         {
@@ -804,25 +804,25 @@
         {
           "query": "tell a colleague something confidential",
           "expected": "dm",
-          "rank": 4,
+          "rank": 3,
           "matches": [
             "inbox",
             "unmute",
-            "doctor",
             "dm",
-            "profile"
+            "file send",
+            "mute"
           ]
         },
         {
           "query": "has anybody written to me",
           "expected": "inbox",
-          "rank": 2,
+          "rank": 1,
           "matches": [
-            "dm",
             "inbox",
+            "dm",
+            "logout",
             "id",
-            "profile",
-            "logout"
+            "profile"
           ]
         },
         {
@@ -831,9 +831,9 @@
           "rank": null,
           "matches": [
             "changelog",
+            "mute",
             "id",
             "login",
-            "mute",
             "unmute"
           ]
         },
@@ -844,8 +844,8 @@
           "matches": [
             "file send",
             "inbox",
-            "file receive",
             "dm",
+            "logout",
             "profile"
           ]
         },
@@ -858,7 +858,7 @@
             "file receive",
             "file send",
             "outbox",
-            "export"
+            "inbox"
           ]
         },
         {
@@ -869,8 +869,8 @@
             "pay",
             "file send",
             "wallet balance",
-            "dm",
-            "inbox"
+            "inbox",
+            "dm"
           ]
         },
         {
@@ -881,8 +881,8 @@
             "pay",
             "wallet balance",
             "outbox",
-            "file receive",
-            "inbox"
+            "inbox",
+            "dm"
           ]
         },
         {
@@ -892,8 +892,8 @@
           "matches": [
             "profile",
             "file send",
-            "unmute",
             "inbox",
+            "unmute",
             "dm"
           ]
         },
@@ -918,7 +918,7 @@
             "update",
             "inbox",
             "file receive",
-            "outbox"
+            "id"
           ]
         },
         {
@@ -929,20 +929,20 @@
             "id",
             "dm",
             "profile",
-            "verify",
-            "dns scopes"
+            "wallet balance",
+            "verify"
           ]
         },
         {
           "query": "look up an answer in my notes",
           "expected": "search",
-          "rank": 5,
+          "rank": 3,
           "matches": [
             "changelog",
             "wallet balance",
+            "search",
             "profile",
-            "help",
-            "search"
+            "help"
           ]
         },
         {
@@ -951,10 +951,10 @@
           "rank": 1,
           "matches": [
             "embed",
-            "file send",
             "outbox",
-            "help",
-            "search"
+            "search",
+            "file send",
+            "help"
           ]
         },
         {
@@ -987,10 +987,10 @@
           "rank": 1,
           "matches": [
             "verify",
+            "import",
             "inbox",
             "restore",
-            "import",
-            "unmute"
+            "backup"
           ]
         },
         {
@@ -1011,13 +1011,14 @@
           "rank": 1,
           "matches": [
             "help",
-            "verify",
             "outbox",
             "id",
-            "list"
+            "verify",
+            "embed"
           ]
         }
       ]
     }
-  ]
+  ],
+  "retrieval_version": "clap-how-to 0.1.1"
 }

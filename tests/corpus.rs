@@ -3,6 +3,9 @@ use clap_how_to::{HowToExt, Source, command_documents, markdown_documents, valid
 
 #[test]
 fn actual_tree_aliases_hidden_items_and_literal_question() {
+    let bare = command_documents(&Command::new("bare").subcommand(Command::new("list")));
+    assert_eq!(bare.len(), 2);
+    assert!(bare.iter().all(|d| !d.text.is_empty()));
     let app = Command::new("app")
         .arg(
             Arg::new("token")

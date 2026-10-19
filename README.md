@@ -4,6 +4,12 @@ Offline semantic help search for Clap. Add `app how "task"` and
 `app how-to "question"` to the same command tree. Retrieve real commands and
 bundled documentation by meaning. Nothing executes a match or invents an answer.
 
+```sh
+cargo add clap-how-to
+# For embeddings without Clap:
+cargo add pocket-encoder
+```
+
 Two crates, one small interface each:
 
 | Crate | Job |
@@ -43,7 +49,7 @@ contextual neural inference, not feature hashing or a static word-vector lookup.
 The small English model and 128-token truncation have limits: retrieve sources,
 read their help, and apply your own judgment. Scores are rankings, not confidence.
 
-See [encoder details](pocket-encoder/README.md), [design and alternatives](docs/design.md),
+See [encoder details](https://github.com/Gonzih/clap-how-to/blob/main/pocket-encoder/README.md), [design and alternatives](docs/design.md),
 [evaluation](benchmarks/README.md) and the runnable `examples/assistant.rs`.
 Source is MIT; bundled model/tokenizer are Apache-2.0, with attribution in
 [`pocket-encoder/NOTICE`](pocket-encoder/NOTICE).

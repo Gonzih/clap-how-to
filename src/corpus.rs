@@ -50,6 +50,16 @@ impl Document {
     pub(crate) fn indexed_text(&self) -> String {
         format!("{} {} {}", self.title, self.title, self.text)
     }
+    pub(crate) fn semantic_text(&self) -> String {
+        // Intent descriptions carry meaning; repeated titles and generated
+        // argument boilerplate can dominate small sentence encoders. Keep the
+        // complete text in BM25 and the displayed result.
+        let text = match self.source {
+            Source::Command { .. } => self.text.lines().next().unwrap_or(&self.text),
+            Source::Documentation { .. } => &self.text,
+        };
+        format!("{}: {text}", self.title)
+    }
 }
 
 /// Extract canonical visible commands, aliases, local arguments and possible values.
@@ -68,7 +78,11 @@ pub fn command_documents(command: &Command) -> Vec<Document> {
             .unwrap_or_default();
         let arguments = command
             .get_arguments()
-            .filter(|arg| !arg.is_hide_set() && (path.is_empty() || !arg.is_global_set()))
+            .filter(|arg| {
+                !arg.is_hide_set()
+                    && (path.is_empty() || !arg.is_global_set())
+                    && !matches!(arg.get_id().as_str(), "help" | "version")
+            })
             .map(|arg| {
                 format!(
                     "{} {} {}",
@@ -94,13 +108,18 @@ pub fn command_documents(command: &Command) -> Vec<Document> {
             format!("{program} {path}")
         };
         let aliases = command.get_visible_aliases().collect::<Vec<_>>().join(" ");
+        let text = format!("{about}\n{arguments} {aliases}").trim().to_owned();
         out.push(Document {
             title: if path.is_empty() {
                 program.into()
             } else {
                 path.into()
             },
-            text: format!("{about}\n{arguments} {aliases}").trim().to_owned(),
+            text: if text.is_empty() {
+                canonical.clone()
+            } else {
+                text
+            },
             source: Source::Command {
                 help: format!("{canonical} --help"),
                 command: canonical,

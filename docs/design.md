@@ -6,7 +6,8 @@ reciprocal-rank fusion combines the two rankings. The application prints real
 source matches. No generation, tools, shell, URLs, network or implicit action.
 
 Clap remains the source of truth for command names, aliases, argument help and
-possible values. Documentation is caller-provided Markdown with exact excerpt,
+possible values. Neural command retrieval uses the intent description, while BM25
+also indexes full argument text. Generated help/version arguments are omitted. Documentation is caller-provided Markdown with exact excerpt,
 heading, filename, line and optional URL provenance. Indexes are ordinary serde
 data, not a database. One best excerpt per section avoids repetitive results.
 Questions are capped at 512 UTF-8 bytes; result limits at 20; corpora at 4096

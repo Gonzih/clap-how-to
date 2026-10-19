@@ -8,8 +8,8 @@ leaderboard. We used it while developing the retrieval rules.
 | Mode | Correct first | Correct within five | MRR@5 |
 | --- | ---: | ---: | ---: |
 | BM25 | 3/30 | 9/30 | 0.184 |
-| Neural cosine | 16/30 | 27/30 | 0.675 |
-| Hybrid | 14/30 | 28/30 | 0.638 |
+| Neural cosine | 19/30 | 27/30 | 0.744 |
+| Hybrid | 16/30 | 28/30 | 0.686 |
 
 Hybrid favors coverage among five suggested sources. It does not win every
 metric. It fuses at most 100 entries per ranking with weights neural=2, BM25=1
@@ -18,7 +18,7 @@ product-specific synonyms. `Mode::Semantic` and `Mode::Lexical` expose ablations
 
 Across 20 fresh processes encoding one short question, model load median was
 37.5 ms (p95 49.4 ms); inference median 6.8 ms (p95 12.0 ms). The 30-document
-corpus took 198 ms to encode including initial model load. Ship a prepared index
+corpus took 172 ms to encode including initial model load. Ship a prepared index
 to avoid corpus inference on each invocation. These are local measurements,
 not latency bounds on other hardware. Debug builds are much slower.
 

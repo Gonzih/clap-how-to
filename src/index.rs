@@ -55,7 +55,7 @@ impl Index {
         validate_documents(&documents)?;
         let texts = documents
             .iter()
-            .map(Document::indexed_text)
+            .map(Document::semantic_text)
             .collect::<Vec<_>>();
         let embeddings = if texts.is_empty() {
             Vec::new()
