@@ -1,6 +1,6 @@
 [package]
 name = "pocket-encoder"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 rust-version = "1.88"
 description = "A bundled, offline sentence transformer with native Rust CPU inference"
@@ -10,6 +10,9 @@ readme = "README.md"
 keywords = ["embeddings", "semantic-search", "offline", "candle", "encoder"]
 categories = ["text-processing", "science"]
 include = ["/src/**", "/assets/**", "/examples/**", "/tests/**", "/README.md", "/LICENSE", "/NOTICE", "/Cargo.toml"]
+
+[features]
+search = []
 
 [dependencies]
 candle-core = { version = "=0.11.0", default-features = false }
@@ -24,3 +27,7 @@ half = "2.7"
 
 [dev-dependencies]
 sha2 = "0.11"
+
+[[example]]
+name = "search"
+required-features = ["search"]

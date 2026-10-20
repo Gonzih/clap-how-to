@@ -10,6 +10,14 @@
 //! assert_eq!(vectors[0].len(), 384);
 //! # Ok::<(), pocket_encoder::Error>(())
 //! ```
+//!
+//! Enable the `search` feature for an exact cosine index with compact binary
+//! storage. Embedding-only users do not compile the index API.
+#[cfg(feature = "search")]
+mod index;
+#[cfg(feature = "search")]
+pub use index::{Index, Neighbor};
+
 use candle_core::{DType, Device, Tensor};
 use candle_nn::VarBuilder;
 use candle_transformers::models::bert::{BertModel, Config};
