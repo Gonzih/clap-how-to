@@ -18,14 +18,17 @@ mod index;
 #[cfg(feature = "search")]
 pub use index::{Index, Neighbor};
 
-use candle_core::{DType, Device, Tensor};
-use candle_nn::VarBuilder;
-use candle_transformers::models::bert::{BertModel, Config};
+#[cfg(not(all(target_arch = "aarch64", target_os = "linux")))]
+mod candle;
+#[cfg(any(all(target_arch = "aarch64", target_os = "linux"), test))]
+mod cpu;
+mod weights;
+#[cfg(not(all(target_arch = "aarch64", target_os = "linux")))]
+use candle::Model;
+#[cfg(all(target_arch = "aarch64", target_os = "linux"))]
+use cpu::Model;
 use serde::{Deserialize, Serialize};
-use std::{
-    collections::HashMap,
-    sync::{Arc, OnceLock},
-};
+use std::sync::{Arc, OnceLock};
 use tokenizers::{Tokenizer, TruncationParams};
 
 /// Embedding coordinate-space identity. Persist this with indexed vectors.
@@ -78,7 +81,7 @@ pub enum Error {
 }
 
 struct Inner {
-    model: BertModel,
+    model: Model,
     tokenizer: Tokenizer,
 }
 
@@ -121,113 +124,54 @@ impl Encoder {
         if bytes > 4 * 1024 * 1024 {
             return Err(Error::Input("texts exceed 4 MiB"));
         }
-        texts
-            .iter()
-            .map(|text| {
-                self.one(text.as_ref())
-                    .map_err(|e| Error::Inference(e.to_string()))
-            })
-            .collect()
+        texts.iter().map(|text| self.one(text.as_ref())).collect()
     }
 
-    fn one(&self, text: &str) -> candle_core::Result<Vec<f32>> {
-        let encoded = self
-            .inner
-            .tokenizer
-            .encode(text, true)
-            .map_err(|e| candle_core::Error::Msg(e.to_string()))?;
-        let n = encoded.len();
-        let ids = Tensor::new(encoded.get_ids(), &Device::Cpu)?.unsqueeze(0)?;
-        let types = Tensor::new(encoded.get_type_ids(), &Device::Cpu)?.unsqueeze(0)?;
-        let mask = Tensor::new(encoded.get_attention_mask(), &Device::Cpu)?.unsqueeze(0)?;
-        let hidden = self.inner.model.forward(&ids, &types, Some(&mask))?;
-        let weights = mask.to_dtype(DType::F32)?.unsqueeze(2)?;
-        let pooled = hidden
-            .broadcast_mul(&weights)?
-            .sum(1)?
-            .squeeze(0)?
-            .to_vec1::<f32>()?;
-        let norm = pooled
-            .iter()
-            .map(|v| (*v as f64).powi(2))
-            .sum::<f64>()
-            .sqrt();
-        if n == 0 || !norm.is_finite() || norm <= 0.0 {
-            candle_core::bail!("non-finite or zero embedding");
-        }
-        Ok(pooled
-            .into_iter()
-            .map(|v| (v as f64 / norm) as f32)
-            .collect())
+    fn one(&self, text: &str) -> Result<Vec<f32>, Error> {
+        let encoded = self.inner.tokenizer.encode(text, true).map_err(inference)?;
+        normalize(self.inner.model.pooled(
+            encoded.get_ids(),
+            encoded.get_type_ids(),
+            encoded.get_attention_mask(),
+        )?)
     }
 }
 
-fn tokenizer() -> candle_core::Result<Tokenizer> {
-    let mut tokenizer = Tokenizer::from_bytes(include_bytes!("../assets/tokenizer.json"))
-        .map_err(|e| candle_core::Error::Msg(e.to_string()))?;
+fn inference(error: impl std::fmt::Display) -> Error {
+    Error::Inference(error.to_string())
+}
+
+fn normalize(pooled: Vec<f32>) -> Result<Vec<f32>, Error> {
+    let norm = pooled
+        .iter()
+        .map(|v| (*v as f64).powi(2))
+        .sum::<f64>()
+        .sqrt();
+    if !norm.is_finite() || norm <= 0.0 {
+        return Err(inference("non-finite or zero embedding"));
+    }
+    Ok(pooled
+        .into_iter()
+        .map(|v| (v as f64 / norm) as f32)
+        .collect())
+}
+
+fn tokenizer() -> Result<Tokenizer, Error> {
+    let mut tokenizer =
+        Tokenizer::from_bytes(include_bytes!("../assets/tokenizer.json")).map_err(inference)?;
     tokenizer.with_padding(None);
     tokenizer
         .with_truncation(Some(TruncationParams {
             max_length: 128,
             ..Default::default()
         }))
-        .map_err(|e| candle_core::Error::Msg(e.to_string()))?;
+        .map_err(inference)?;
     Ok(tokenizer)
 }
 
-fn load_bundled() -> candle_core::Result<Inner> {
-    let file = safetensors::SafeTensors::deserialize(include_bytes!("../assets/model.safetensors"))
-        .map_err(|e| candle_core::Error::Msg(e.to_string()))?;
-    let shapes: HashMap<String, Vec<usize>> =
-        serde_json::from_str(include_str!("../assets/shapes.json"))
-            .map_err(|e| candle_core::Error::Msg(e.to_string()))?;
-    let floats = |bytes: &[u8]| {
-        bytes
-            .as_chunks::<4>()
-            .0
-            .iter()
-            .map(|b| f32::from_le_bytes(*b))
-            .collect::<Vec<_>>()
-    };
-    let mut tensors = HashMap::new();
-    for (name, shape) in shapes {
-        let data = if shape.len() < 2 {
-            floats(
-                file.tensor(&name)
-                    .map_err(|e| candle_core::Error::Msg(e.to_string()))?
-                    .data(),
-            )
-        } else {
-            let packed = file
-                .tensor(&format!("{name}.q4"))
-                .map_err(|e| candle_core::Error::Msg(e.to_string()))?;
-            let scales = file
-                .tensor(&format!("{name}.scales"))
-                .map_err(|e| candle_core::Error::Msg(e.to_string()))?;
-            let scales = scales
-                .data()
-                .as_chunks::<2>()
-                .0
-                .iter()
-                .map(|b| half::f16::from_bits(u16::from_le_bytes(*b)).to_f32())
-                .collect::<Vec<_>>();
-            (0..shape.iter().product())
-                .map(|i| {
-                    let nibble = (packed.data()[i / 2] >> ((i % 2) * 4)) & 15;
-                    (nibble as i16 - 8) as f32 * scales[i / 32]
-                })
-                .collect()
-        };
-        tensors.insert(name, Tensor::from_vec(data, shape, &Device::Cpu)?);
-    }
-    let config: Config = serde_json::from_str(include_str!("../assets/config.json"))
-        .map_err(|e| candle_core::Error::Msg(e.to_string()))?;
-    let model = BertModel::load(
-        VarBuilder::from_tensors(tensors, DType::F32, &Device::Cpu),
-        &config,
-    )?;
+fn load_bundled() -> Result<Inner, Error> {
     Ok(Inner {
-        model,
+        model: Model::load()?,
         tokenizer: tokenizer()?,
     })
 }
