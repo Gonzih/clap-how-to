@@ -48,7 +48,9 @@ For short-lived CLIs, encode the corpus during development. Serialize
 the artifact when help/docs or the encoder fingerprint changes. No build script,
 model cache, network service, Python or ONNX shared library is used at runtime.
 
-The encoder runs all three MiniLM attention layers with Candle on CPU. Bundled
+The encoder runs all three MiniLM attention layers on CPU. Linux ARM64 uses
+an F32-only Rust backend; other targets use Candle. No special compiler flags
+are required. Bundled
 matrices use 4-bit storage; they expand to F32 once when loaded. This is actual
 contextual neural inference, not feature hashing or a static word-vector lookup.
 The small English model and 128-token truncation have limits: retrieve sources,
@@ -91,6 +93,10 @@ assert!(result.issues.is_empty());
 # Ok(()) }
 ```
 
-The 0.2 API adds the `Source::Record` variant. Update exhaustive `Source` matches
+The 0.2 API adds `Source::Record` and `Error::Source`. Update exhaustive matches
 when upgrading from 0.1. No harness discovery or cache writes happen unless the
 application supplies such a source.
+
+Release 0.2.1 includes dynamic sources and pins pocket-encoder 0.1.2 with the
+generic Linux ARM64 portability fix. The model fingerprint and PKTIDX01 storage
+format are unchanged.
