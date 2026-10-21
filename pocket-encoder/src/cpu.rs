@@ -66,7 +66,7 @@ impl Model {
     fn norm(&self, values: &mut [f32], name: &str) -> Result<(), Error> {
         let scale = self.weight(&format!("{name}.weight"), &[HIDDEN])?;
         let bias = self.weight(&format!("{name}.bias"), &[HIDDEN])?;
-        for row in values.chunks_exact_mut(HIDDEN) {
+        for row in values.as_chunks_mut::<HIDDEN>().0 {
             // Match Candle's F32 layer-norm reduction and epsilon.
             let mut sum = 0.0f32;
             let mut sum2 = 0.0f32;
@@ -130,7 +130,9 @@ impl Model {
             for head in 0..HEADS {
                 let gather = |values: &[f32]| {
                     values
-                        .chunks_exact(HIDDEN)
+                        .as_chunks::<HIDDEN>()
+                        .0
+                        .iter()
                         .flat_map(|row| row[head * HEAD..(head + 1) * HEAD].iter().copied())
                         .collect::<Vec<_>>()
                 };
@@ -155,8 +157,10 @@ impl Model {
                 }
                 let head_values = matmul(&scores, n, n, &v, HEAD, false);
                 for (row, values) in context
-                    .chunks_exact_mut(HIDDEN)
-                    .zip(head_values.chunks_exact(HEAD))
+                    .as_chunks_mut::<HIDDEN>()
+                    .0
+                    .iter_mut()
+                    .zip(head_values.as_chunks::<HEAD>().0.iter())
                 {
                     row[head * HEAD..(head + 1) * HEAD].copy_from_slice(values);
                 }
@@ -198,7 +202,7 @@ impl Model {
             self.norm(&mut hidden, &format!("{prefix}.output.LayerNorm"))?;
         }
         let mut pooled = vec![0.0; HIDDEN];
-        for (row, &mask) in hidden.chunks_exact(HIDDEN).zip(mask) {
+        for (row, &mask) in hidden.as_chunks::<HIDDEN>().0.iter().zip(mask) {
             for (sum, &v) in pooled.iter_mut().zip(row) {
                 *sum += v * mask as f32;
             }
