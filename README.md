@@ -58,3 +58,39 @@ See [encoder details](https://github.com/Gonzih/clap-how-to/blob/main/pocket-enc
 [evaluation](benchmarks/README.md) and the runnable `examples/assistant.rs`.
 Source is MIT; bundled model/tokenizer are Apache-2.0, with attribution in
 [`pocket-encoder/NOTICE`](pocket-encoder/NOTICE).
+
+## Dynamic sources
+
+`Index::search_with_sources` accepts caller-owned `DynamicSource` implementations
+(or closures). Primary help and documentation always come first. Supplemental
+matches are embedded locally, ranked by their relative `WeightedSource::weight`,
+and appended with their original provenance. A failed source is reported in
+`SearchResults::issues` without suppressing working help results.
+
+Sources own their filesystem/database access and cache policy. Return at most
+64 candidates per source; `lexical_candidates` provides cheap candidate selection
+before neural embedding. Source text is evidence, never execution authority.
+`Source::Record` identifies historical records by provider, locator, and byte offset.
+
+```rust,no_run
+use clap_how_to::{Document, Index, Source, WeightedSource, lexical_candidates};
+# fn main() -> clap_how_to::Result<()> {
+let help = Index::new(vec![])?; // normally load your compiled PreparedIndex
+let records = vec![Document {
+    title: "Codex log".into(),
+    text: "The last migration was checked with cargo test".into(),
+    source: Source::Record {
+        provider: "codex".into(), source: "session.jsonl".into(), byte_offset: 42,
+    },
+}];
+let logs = |query: &str| lexical_candidates(&records, query, 6);
+let result = help.search_with_sources("check the migration", 5, &[
+    WeightedSource { name: "logs", weight: 0.05, source: &logs },
+], 3)?;
+assert!(result.issues.is_empty());
+# Ok(()) }
+```
+
+The 0.2 API adds the `Source::Record` variant. Update exhaustive `Source` matches
+when upgrading from 0.1. No harness discovery or cache writes happen unless the
+application supplies such a source.

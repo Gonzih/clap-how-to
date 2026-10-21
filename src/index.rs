@@ -177,7 +177,7 @@ impl Index {
     }
 }
 
-fn validate_documents(documents: &[Document]) -> Result<()> {
+pub(crate) fn validate_documents(documents: &[Document]) -> Result<()> {
     if documents.len() > 4096 {
         return Err(Error::InvalidInput("index exceeds 4096 documents"));
     }
@@ -261,12 +261,12 @@ fn tokens(text: &str) -> Vec<String> {
         })
         .collect()
 }
-struct Lexical {
+pub(crate) struct Lexical {
     lengths: Vec<usize>,
     postings: BTreeMap<String, Vec<(usize, usize)>>,
 }
 impl Lexical {
-    fn new(documents: &[Document]) -> Self {
+    pub(crate) fn new(documents: &[Document]) -> Self {
         let mut postings = BTreeMap::<String, Vec<(usize, usize)>>::new();
         let mut lengths = Vec::new();
         for (i, document) in documents.iter().enumerate() {
@@ -282,7 +282,7 @@ impl Lexical {
         }
         Self { lengths, postings }
     }
-    fn search(&self, query: &str) -> Vec<(usize, f64)> {
+    pub(crate) fn search(&self, query: &str) -> Vec<(usize, f64)> {
         let count = self.lengths.len() as f64;
         if count == 0.0 {
             return Vec::new();

@@ -24,6 +24,15 @@ pub enum Source {
         #[serde(skip_serializing_if = "Option::is_none")]
         url: Option<String>,
     },
+    /// Historical caller-owned record, such as a local harness log entry.
+    Record {
+        /// Caller-defined provider or record family.
+        provider: String,
+        /// File or other caller-owned locator; never opened by this library.
+        source: String,
+        /// Byte offset of the original record in that source.
+        byte_offset: u64,
+    },
 }
 
 /// A command description or real documentation excerpt to index.
@@ -45,6 +54,11 @@ impl Document {
             Source::Documentation {
                 source, section, ..
             } => format!("doc:{source}#{section}"),
+            Source::Record {
+                provider,
+                source,
+                byte_offset,
+            } => format!("record:{provider}:{source}:{byte_offset}"),
         }
     }
     pub(crate) fn indexed_text(&self) -> String {
@@ -56,7 +70,7 @@ impl Document {
         // complete text in BM25 and the displayed result.
         let text = match self.source {
             Source::Command { .. } => self.text.lines().next().unwrap_or(&self.text),
-            Source::Documentation { .. } => &self.text,
+            Source::Documentation { .. } | Source::Record { .. } => &self.text,
         };
         format!("{}: {text}", self.title)
     }
@@ -149,7 +163,9 @@ pub fn command_documents(command: &Command) -> Vec<Document> {
     documents
 }
 
-/// Chunk Markdown into exact, at-most700-byte source excerpts with heading/line provenance.
+/// Chunk Markdown into exact source excerpts with heading/line provenance.
+/// Chunks normally have at most 700 bytes; an introduction and its example may
+/// be retained together up to 1400 bytes. YAML frontmatter is not source guidance.
 ///
 /// Fenced headings remain code. Search-query examples are excluded to avoid
 /// matching the question instead of its answer. Search deduplicates a section.
@@ -215,9 +231,24 @@ pub fn markdown_documents(source: &str, markdown: &str, url: Option<&str>) -> Ve
         }
     }
     let mut result = Vec::new();
+    let frontmatter_end = markdown
+        .lines()
+        .next()
+        .filter(|line| *line == "---")
+        .and_then(|_| {
+            markdown
+                .lines()
+                .enumerate()
+                .skip(1)
+                .find(|(_, line)| *line == "---")
+                .map(|(i, _)| i)
+        });
     let (mut section, mut start, mut fenced) = (source.to_owned(), 1, false);
     let mut lines = Vec::new();
     for (i, line) in markdown.lines().enumerate() {
+        if frontmatter_end.is_some_and(|end| i <= end) {
+            continue;
+        }
         let heading = (!fenced)
             .then(|| {
                 line.strip_prefix('#')
@@ -245,5 +276,55 @@ pub fn markdown_documents(source: &str, markdown: &str, url: Option<&str>) -> Ve
         }
     }
     block(source, &section, start, &lines, url, &mut result);
-    result
+    complete_excerpts(result, markdown)
+}
+
+fn introduction(text: &str) -> bool {
+    text.trim_end_matches(&['*', '_'][..]).ends_with(':')
+}
+
+/// Keep a short introduction with its example, preserving exact source lines.
+/// Standalone fragments such as "Read messages with:" cannot answer a question.
+fn complete_excerpts(mut documents: Vec<Document>, markdown: &str) -> Vec<Document> {
+    let lines: Vec<_> = markdown.lines().collect();
+    let mut index = 0;
+    while index + 1 < documents.len() {
+        let current = &documents[index];
+        let next = &documents[index + 1];
+        if let (
+            Source::Documentation { section, line, .. },
+            Source::Documentation {
+                section: next_section,
+                line: next_line,
+                ..
+            },
+        ) = (&current.source, &next.source)
+        {
+            let start = line - 1;
+            let end = start + current.text.lines().count();
+            let next_start = next_line - 1;
+            let next_end = next_start + next.text.lines().count();
+            if introduction(&current.text)
+                && section == next_section
+                && end <= next_start
+                && lines[start..end].join("\n") == current.text
+                && lines[next_start..next_end].join("\n") == next.text
+                && lines[end..next_start]
+                    .iter()
+                    .all(|line| line.trim().is_empty())
+                && lines[start..next_end]
+                    .iter()
+                    .map(|line| line.len() + 1)
+                    .sum::<usize>()
+                    <= 1400
+            {
+                documents[index].text = lines[start..next_end].join("\n");
+                documents.remove(index + 1);
+                continue;
+            }
+        }
+        index += 1;
+    }
+    documents.retain(|document| !introduction(&document.text));
+    documents
 }
