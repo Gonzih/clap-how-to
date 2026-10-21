@@ -1,10 +1,11 @@
 //! Compare bundled vectors with upstream F32 weights using the same Rust runtime.
 //! Explicit developer tool; requires original weights and a JSON array of texts.
-use candle_core::{DType, Device, Tensor};
-use candle_nn::VarBuilder;
-use candle_transformers::models::bert::{BertModel, Config};
-use tokenizers::{Tokenizer, TruncationParams};
+#[cfg(not(all(target_arch = "aarch64", target_os = "linux")))]
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    use candle_core::{DType, Device, Tensor};
+    use candle_nn::VarBuilder;
+    use candle_transformers::models::bert::{BertModel, Config};
+    use tokenizers::{Tokenizer, TruncationParams};
     let args = std::env::args().skip(1).collect::<Vec<_>>();
     let root = std::path::Path::new(&args[0]);
     let texts: Vec<String> = serde_json::from_slice(&std::fs::read(&args[1])?)?;
@@ -44,4 +45,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     println!("{}", serde_json::json!({"embeddings":rows}));
     Ok(())
+}
+
+#[cfg(all(target_arch = "aarch64", target_os = "linux"))]
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    Err("The upstream-weight reference exporter requires Candle on a non-Linux-ARM64 host. Bundled Encoder inference is supported on Linux ARM64.".into())
 }

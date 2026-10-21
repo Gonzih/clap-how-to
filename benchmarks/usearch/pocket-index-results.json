@@ -1,0 +1,2680 @@
+{
+  "corpus_encode_ms": 154.964875,
+  "git_head": "06872695850583fe375a136d927d81af17721127",
+  "machine": "Apple M4",
+  "measured_at": "2026-10-20T16:42:44Z",
+  "method": "Release, default target CPU; single caller; F32 normalized inner product; full-sort production scan; one warm-up pass, five measured passes over 60 queries; ANN defaults; 30 real embeddings, larger corpora seeded synthetic clusters; no semantic inference from synthetic rows. Fresh probes authored before first run, not a held-out dataset.",
+  "model": {
+    "dimensions": 384,
+    "id": "pocket-encoder/minilm-l3-q4-g32-v1",
+    "max_tokens": 128,
+    "pooling": "attention-masked mean; L2 normalized; no query prefix; right truncation",
+    "revision": "sha256:dabb40d5d98a22372c8921acf048cb54bb8bf6d781b1233b2a360d5125789c7e",
+    "tokenizer_sha256": "a9576e4dadfe7f78f071a1c00ba6902cc83ec6ed7e9b590ee974950bd4d54393",
+    "upstream_model": "sentence-transformers/paraphrase-MiniLM-L3-v2",
+    "upstream_revision": "4ca70771034acceecb2e72475f72050fcdde4ddc"
+  },
+  "model_load_ms": 37.2505,
+  "quality": [
+    {
+      "modes": {
+        "hybrid": {
+          "latency": {
+            "p50_us": 2808.9579999999996,
+            "p95_us": 5926.25,
+            "samples": 30
+          },
+          "mrr_at_5": 0.6861111111111112,
+          "queries": 30,
+          "results": [
+            {
+              "expected": "backup",
+              "hits": [
+                "backup",
+                "delete",
+                "restore",
+                "dm",
+                "verify"
+              ],
+              "query": "protect me from losing everything",
+              "rank": 1
+            },
+            {
+              "expected": "restore",
+              "hits": [
+                "dm",
+                "unmute",
+                "id",
+                "restore",
+                "import"
+              ],
+              "query": "bring back yesterday's work",
+              "rank": 4
+            },
+            {
+              "expected": "delete",
+              "hits": [
+                "restore",
+                "delete",
+                "backup",
+                "export",
+                "mute"
+              ],
+              "query": "erase a saved copy forever",
+              "rank": 2
+            },
+            {
+              "expected": "login",
+              "hits": [
+                "wallet balance",
+                "profile",
+                "login",
+                "import",
+                "file receive"
+              ],
+              "query": "sign into my account",
+              "rank": 3
+            },
+            {
+              "expected": "logout",
+              "hits": [
+                "wallet balance",
+                "login",
+                "id",
+                "pay",
+                "mute"
+              ],
+              "query": "disconnect my account",
+              "rank": null
+            },
+            {
+              "expected": "dns edit",
+              "hits": [
+                "dns scopes",
+                "profile",
+                "dns edit",
+                "id",
+                "logout"
+              ],
+              "query": "change where my website name points",
+              "rank": 3
+            },
+            {
+              "expected": "dns scopes",
+              "hits": [
+                "dns scopes",
+                "dns edit",
+                "login",
+                "logout",
+                "logs"
+              ],
+              "query": "Log in and configure OAuth scopes for DNS management",
+              "rank": 1
+            },
+            {
+              "expected": "deploy",
+              "hits": [
+                "dm",
+                "verify",
+                "export",
+                "deploy",
+                "update"
+              ],
+              "query": "put this app online",
+              "rank": 4
+            },
+            {
+              "expected": "logs",
+              "hits": [
+                "logs",
+                "deploy",
+                "doctor",
+                "dns scopes",
+                "dm"
+              ],
+              "query": "what went wrong on the server",
+              "rank": 1
+            },
+            {
+              "expected": "doctor",
+              "hits": [
+                "doctor",
+                "dm",
+                "inbox",
+                "mute",
+                "unmute"
+              ],
+              "query": "why can't I reach the other computer",
+              "rank": 1
+            },
+            {
+              "expected": "mute",
+              "hits": [
+                "mute",
+                "backup",
+                "restore",
+                "unmute",
+                "search"
+              ],
+              "query": "leave me alone so I can concentrate",
+              "rank": 1
+            },
+            {
+              "expected": "unmute",
+              "hits": [
+                "dm",
+                "unmute",
+                "inbox",
+                "mute",
+                "file send"
+              ],
+              "query": "let people contact me again",
+              "rank": 2
+            },
+            {
+              "expected": "dm",
+              "hits": [
+                "inbox",
+                "unmute",
+                "dm",
+                "file send",
+                "mute"
+              ],
+              "query": "tell a colleague something confidential",
+              "rank": 3
+            },
+            {
+              "expected": "inbox",
+              "hits": [
+                "inbox",
+                "dm",
+                "logout",
+                "id",
+                "profile"
+              ],
+              "query": "has anybody written to me",
+              "rank": 1
+            },
+            {
+              "expected": "outbox",
+              "hits": [
+                "changelog",
+                "mute",
+                "id",
+                "login",
+                "unmute"
+              ],
+              "query": "which of my notes are still unsent",
+              "rank": null
+            },
+            {
+              "expected": "file send",
+              "hits": [
+                "file send",
+                "inbox",
+                "dm",
+                "logout",
+                "profile"
+              ],
+              "query": "share a document with a colleague",
+              "rank": 1
+            },
+            {
+              "expected": "file receive",
+              "hits": [
+                "backup",
+                "file receive",
+                "file send",
+                "outbox",
+                "inbox"
+              ],
+              "query": "save the attachment someone offered",
+              "rank": 2
+            },
+            {
+              "expected": "pay",
+              "hits": [
+                "pay",
+                "file send",
+                "wallet balance",
+                "inbox",
+                "dm"
+              ],
+              "query": "send the seller their money",
+              "rank": 1
+            },
+            {
+              "expected": "wallet balance",
+              "hits": [
+                "pay",
+                "wallet balance",
+                "outbox",
+                "inbox",
+                "dm"
+              ],
+              "query": "how much cash have I got",
+              "rank": 2
+            },
+            {
+              "expected": "profile",
+              "hits": [
+                "profile",
+                "file send",
+                "inbox",
+                "unmute",
+                "dm"
+              ],
+              "query": "who operates this agent",
+              "rank": 1
+            },
+            {
+              "expected": "changelog",
+              "hits": [
+                "changelog",
+                "update",
+                "restore",
+                "dns edit",
+                "inbox"
+              ],
+              "query": "what changed since the last release",
+              "rank": 1
+            },
+            {
+              "expected": "update",
+              "hits": [
+                "changelog",
+                "update",
+                "inbox",
+                "file receive",
+                "id"
+              ],
+              "query": "get the latest release",
+              "rank": 2
+            },
+            {
+              "expected": "id",
+              "hits": [
+                "id",
+                "dm",
+                "profile",
+                "wallet balance",
+                "verify"
+              ],
+              "query": "which public key belongs to me",
+              "rank": 1
+            },
+            {
+              "expected": "search",
+              "hits": [
+                "changelog",
+                "wallet balance",
+                "search",
+                "profile",
+                "help"
+              ],
+              "query": "look up an answer in my notes",
+              "rank": 3
+            },
+            {
+              "expected": "embed",
+              "hits": [
+                "embed",
+                "outbox",
+                "search",
+                "file send",
+                "help"
+              ],
+              "query": "represent these paragraphs as coordinates",
+              "rank": 1
+            },
+            {
+              "expected": "import",
+              "hits": [
+                "export",
+                "search",
+                "list",
+                "import",
+                "wallet balance"
+              ],
+              "query": "open a downloaded knowledge pack",
+              "rank": 4
+            },
+            {
+              "expected": "export",
+              "hits": [
+                "export",
+                "list",
+                "search",
+                "inbox",
+                "dm"
+              ],
+              "query": "package my knowledge so I can share it",
+              "rank": 1
+            },
+            {
+              "expected": "verify",
+              "hits": [
+                "verify",
+                "import",
+                "inbox",
+                "restore",
+                "backup"
+              ],
+              "query": "has this pack been corrupted",
+              "rank": 1
+            },
+            {
+              "expected": "list",
+              "hits": [
+                "list",
+                "search",
+                "export",
+                "import",
+                "backup"
+              ],
+              "query": "what knowledge packs are installed",
+              "rank": 1
+            },
+            {
+              "expected": "help",
+              "hits": [
+                "help",
+                "outbox",
+                "id",
+                "verify",
+                "embed"
+              ],
+              "query": "which arguments does this accept",
+              "rank": 1
+            }
+          ],
+          "top1": 16,
+          "top5": 28
+        },
+        "lexical": {
+          "latency": {
+            "p50_us": 0.792,
+            "p95_us": 4.458,
+            "samples": 30
+          },
+          "mrr_at_5": 0.18444444444444444,
+          "queries": 30,
+          "results": [
+            {
+              "expected": "backup",
+              "hits": [],
+              "query": "protect me from losing everything",
+              "rank": null
+            },
+            {
+              "expected": "restore",
+              "hits": [
+                "id",
+                "verify",
+                "dns edit",
+                "profile",
+                "dm"
+              ],
+              "query": "bring back yesterday's work",
+              "rank": null
+            },
+            {
+              "expected": "delete",
+              "hits": [
+                "restore"
+              ],
+              "query": "erase a saved copy forever",
+              "rank": null
+            },
+            {
+              "expected": "login",
+              "hits": [
+                "wallet balance",
+                "import",
+                "embed",
+                "file receive"
+              ],
+              "query": "sign into my account",
+              "rank": null
+            },
+            {
+              "expected": "logout",
+              "hits": [
+                "wallet balance"
+              ],
+              "query": "disconnect my account",
+              "rank": null
+            },
+            {
+              "expected": "dns edit",
+              "hits": [
+                "profile",
+                "dns scopes"
+              ],
+              "query": "change where my website name points",
+              "rank": null
+            },
+            {
+              "expected": "dns scopes",
+              "hits": [
+                "dns scopes",
+                "dns edit",
+                "login"
+              ],
+              "query": "Log in and configure OAuth scopes for DNS management",
+              "rank": 1
+            },
+            {
+              "expected": "deploy",
+              "hits": [],
+              "query": "put this app online",
+              "rank": null
+            },
+            {
+              "expected": "logs",
+              "hits": [
+                "deploy",
+                "logs"
+              ],
+              "query": "what went wrong on the server",
+              "rank": 2
+            },
+            {
+              "expected": "doctor",
+              "hits": [],
+              "query": "why can't I reach the other computer",
+              "rank": null
+            },
+            {
+              "expected": "mute",
+              "hits": [],
+              "query": "leave me alone so I can concentrate",
+              "rank": null
+            },
+            {
+              "expected": "unmute",
+              "hits": [],
+              "query": "let people contact me again",
+              "rank": null
+            },
+            {
+              "expected": "dm",
+              "hits": [],
+              "query": "tell a colleague something confidential",
+              "rank": null
+            },
+            {
+              "expected": "inbox",
+              "hits": [],
+              "query": "has anybody written to me",
+              "rank": null
+            },
+            {
+              "expected": "outbox",
+              "hits": [
+                "changelog"
+              ],
+              "query": "which of my notes are still unsent",
+              "rank": null
+            },
+            {
+              "expected": "file send",
+              "hits": [],
+              "query": "share a document with a colleague",
+              "rank": null
+            },
+            {
+              "expected": "file receive",
+              "hits": [
+                "backup",
+                "file receive"
+              ],
+              "query": "save the attachment someone offered",
+              "rank": 2
+            },
+            {
+              "expected": "pay",
+              "hits": [
+                "file send",
+                "pay"
+              ],
+              "query": "send the seller their money",
+              "rank": 2
+            },
+            {
+              "expected": "wallet balance",
+              "hits": [],
+              "query": "how much cash have I got",
+              "rank": null
+            },
+            {
+              "expected": "profile",
+              "hits": [
+                "inbox",
+                "unmute",
+                "mute",
+                "file send",
+                "profile"
+              ],
+              "query": "who operates this agent",
+              "rank": 5
+            },
+            {
+              "expected": "changelog",
+              "hits": [
+                "changelog"
+              ],
+              "query": "what changed since the last release",
+              "rank": 1
+            },
+            {
+              "expected": "update",
+              "hits": [
+                "changelog"
+              ],
+              "query": "get the latest release",
+              "rank": null
+            },
+            {
+              "expected": "id",
+              "hits": [
+                "id",
+                "dm"
+              ],
+              "query": "which public key belongs to me",
+              "rank": 1
+            },
+            {
+              "expected": "search",
+              "hits": [
+                "changelog"
+              ],
+              "query": "look up an answer in my notes",
+              "rank": null
+            },
+            {
+              "expected": "embed",
+              "hits": [],
+              "query": "represent these paragraphs as coordinates",
+              "rank": null
+            },
+            {
+              "expected": "import",
+              "hits": [
+                "search",
+                "list",
+                "export"
+              ],
+              "query": "open a downloaded knowledge pack",
+              "rank": null
+            },
+            {
+              "expected": "export",
+              "hits": [
+                "search",
+                "list",
+                "export"
+              ],
+              "query": "package my knowledge so I can share it",
+              "rank": 3
+            },
+            {
+              "expected": "verify",
+              "hits": [],
+              "query": "has this pack been corrupted",
+              "rank": null
+            },
+            {
+              "expected": "list",
+              "hits": [
+                "search",
+                "list",
+                "export"
+              ],
+              "query": "what knowledge packs are installed",
+              "rank": 2
+            },
+            {
+              "expected": "help",
+              "hits": [],
+              "query": "which arguments does this accept",
+              "rank": null
+            }
+          ],
+          "top1": 3,
+          "top5": 9
+        },
+        "semantic": {
+          "latency": {
+            "p50_us": 2745.042,
+            "p95_us": 3560.583,
+            "samples": 30
+          },
+          "mrr_at_5": 0.7444444444444446,
+          "queries": 30,
+          "results": [
+            {
+              "expected": "backup",
+              "hits": [
+                "backup",
+                "delete",
+                "restore",
+                "dm",
+                "verify"
+              ],
+              "query": "protect me from losing everything",
+              "rank": 1
+            },
+            {
+              "expected": "restore",
+              "hits": [
+                "unmute",
+                "restore",
+                "import",
+                "backup",
+                "file send"
+              ],
+              "query": "bring back yesterday's work",
+              "rank": 2
+            },
+            {
+              "expected": "delete",
+              "hits": [
+                "delete",
+                "backup",
+                "restore",
+                "export",
+                "mute"
+              ],
+              "query": "erase a saved copy forever",
+              "rank": 1
+            },
+            {
+              "expected": "login",
+              "hits": [
+                "profile",
+                "login",
+                "wallet balance",
+                "id",
+                "logout"
+              ],
+              "query": "sign into my account",
+              "rank": 2
+            },
+            {
+              "expected": "logout",
+              "hits": [
+                "wallet balance",
+                "login",
+                "id",
+                "pay",
+                "mute"
+              ],
+              "query": "disconnect my account",
+              "rank": null
+            },
+            {
+              "expected": "dns edit",
+              "hits": [
+                "dns edit",
+                "dns scopes",
+                "profile",
+                "id",
+                "logout"
+              ],
+              "query": "change where my website name points",
+              "rank": 1
+            },
+            {
+              "expected": "dns scopes",
+              "hits": [
+                "dns scopes",
+                "dns edit",
+                "login",
+                "logout",
+                "logs"
+              ],
+              "query": "Log in and configure OAuth scopes for DNS management",
+              "rank": 1
+            },
+            {
+              "expected": "deploy",
+              "hits": [
+                "dm",
+                "verify",
+                "export",
+                "deploy",
+                "update"
+              ],
+              "query": "put this app online",
+              "rank": 4
+            },
+            {
+              "expected": "logs",
+              "hits": [
+                "logs",
+                "doctor",
+                "deploy",
+                "dns scopes",
+                "dm"
+              ],
+              "query": "what went wrong on the server",
+              "rank": 1
+            },
+            {
+              "expected": "doctor",
+              "hits": [
+                "doctor",
+                "dm",
+                "inbox",
+                "mute",
+                "unmute"
+              ],
+              "query": "why can't I reach the other computer",
+              "rank": 1
+            },
+            {
+              "expected": "mute",
+              "hits": [
+                "mute",
+                "backup",
+                "restore",
+                "unmute",
+                "search"
+              ],
+              "query": "leave me alone so I can concentrate",
+              "rank": 1
+            },
+            {
+              "expected": "unmute",
+              "hits": [
+                "dm",
+                "unmute",
+                "inbox",
+                "mute",
+                "file send"
+              ],
+              "query": "let people contact me again",
+              "rank": 2
+            },
+            {
+              "expected": "dm",
+              "hits": [
+                "inbox",
+                "unmute",
+                "dm",
+                "file send",
+                "mute"
+              ],
+              "query": "tell a colleague something confidential",
+              "rank": 3
+            },
+            {
+              "expected": "inbox",
+              "hits": [
+                "inbox",
+                "dm",
+                "logout",
+                "id",
+                "profile"
+              ],
+              "query": "has anybody written to me",
+              "rank": 1
+            },
+            {
+              "expected": "outbox",
+              "hits": [
+                "mute",
+                "id",
+                "login",
+                "unmute",
+                "changelog"
+              ],
+              "query": "which of my notes are still unsent",
+              "rank": null
+            },
+            {
+              "expected": "file send",
+              "hits": [
+                "file send",
+                "inbox",
+                "dm",
+                "logout",
+                "profile"
+              ],
+              "query": "share a document with a colleague",
+              "rank": 1
+            },
+            {
+              "expected": "file receive",
+              "hits": [
+                "file send",
+                "outbox",
+                "backup",
+                "inbox",
+                "export"
+              ],
+              "query": "save the attachment someone offered",
+              "rank": null
+            },
+            {
+              "expected": "pay",
+              "hits": [
+                "pay",
+                "file send",
+                "wallet balance",
+                "inbox",
+                "dm"
+              ],
+              "query": "send the seller their money",
+              "rank": 1
+            },
+            {
+              "expected": "wallet balance",
+              "hits": [
+                "pay",
+                "wallet balance",
+                "outbox",
+                "inbox",
+                "dm"
+              ],
+              "query": "how much cash have I got",
+              "rank": 2
+            },
+            {
+              "expected": "profile",
+              "hits": [
+                "profile",
+                "file send",
+                "dm",
+                "inbox",
+                "unmute"
+              ],
+              "query": "who operates this agent",
+              "rank": 1
+            },
+            {
+              "expected": "changelog",
+              "hits": [
+                "changelog",
+                "update",
+                "restore",
+                "dns edit",
+                "inbox"
+              ],
+              "query": "what changed since the last release",
+              "rank": 1
+            },
+            {
+              "expected": "update",
+              "hits": [
+                "update",
+                "changelog",
+                "inbox",
+                "file receive",
+                "id"
+              ],
+              "query": "get the latest release",
+              "rank": 1
+            },
+            {
+              "expected": "id",
+              "hits": [
+                "id",
+                "dm",
+                "profile",
+                "wallet balance",
+                "verify"
+              ],
+              "query": "which public key belongs to me",
+              "rank": 1
+            },
+            {
+              "expected": "search",
+              "hits": [
+                "wallet balance",
+                "search",
+                "profile",
+                "help",
+                "changelog"
+              ],
+              "query": "look up an answer in my notes",
+              "rank": 2
+            },
+            {
+              "expected": "embed",
+              "hits": [
+                "embed",
+                "outbox",
+                "search",
+                "file send",
+                "help"
+              ],
+              "query": "represent these paragraphs as coordinates",
+              "rank": 1
+            },
+            {
+              "expected": "import",
+              "hits": [
+                "export",
+                "search",
+                "list",
+                "import",
+                "wallet balance"
+              ],
+              "query": "open a downloaded knowledge pack",
+              "rank": 4
+            },
+            {
+              "expected": "export",
+              "hits": [
+                "export",
+                "list",
+                "search",
+                "inbox",
+                "dm"
+              ],
+              "query": "package my knowledge so I can share it",
+              "rank": 1
+            },
+            {
+              "expected": "verify",
+              "hits": [
+                "verify",
+                "import",
+                "inbox",
+                "restore",
+                "backup"
+              ],
+              "query": "has this pack been corrupted",
+              "rank": 1
+            },
+            {
+              "expected": "list",
+              "hits": [
+                "list",
+                "export",
+                "search",
+                "import",
+                "backup"
+              ],
+              "query": "what knowledge packs are installed",
+              "rank": 1
+            },
+            {
+              "expected": "help",
+              "hits": [
+                "help",
+                "outbox",
+                "id",
+                "verify",
+                "embed"
+              ],
+              "query": "which arguments does this accept",
+              "rank": 1
+            }
+          ],
+          "top1": 19,
+          "top5": 27
+        }
+      },
+      "suite": "existing"
+    },
+    {
+      "modes": {
+        "hybrid": {
+          "latency": {
+            "p50_us": 3099.0420000000004,
+            "p95_us": 3691.542,
+            "samples": 30
+          },
+          "mrr_at_5": 0.7344444444444445,
+          "queries": 30,
+          "results": [
+            {
+              "expected": "backup",
+              "hits": [
+                "export",
+                "file receive",
+                "dm",
+                "file send",
+                "backup"
+              ],
+              "query": "make a safety copy before I touch these files",
+              "rank": 5
+            },
+            {
+              "expected": "restore",
+              "hits": [
+                "backup",
+                "restore",
+                "import",
+                "export",
+                "logs"
+              ],
+              "query": "roll my project back to its saved state",
+              "rank": 2
+            },
+            {
+              "expected": "delete",
+              "hits": [
+                "delete",
+                "outbox",
+                "restore",
+                "backup",
+                "logs"
+              ],
+              "query": "destroy one of the stored recovery points",
+              "rank": 1
+            },
+            {
+              "expected": "login",
+              "hits": [
+                "wallet balance",
+                "login",
+                "dns scopes",
+                "profile",
+                "pay"
+              ],
+              "query": "authorize this machine to access my account",
+              "rank": 2
+            },
+            {
+              "expected": "logout",
+              "hits": [
+                "logout",
+                "restore",
+                "login",
+                "id",
+                "verify"
+              ],
+              "query": "invalidate the credentials saved on this machine",
+              "rank": 1
+            },
+            {
+              "expected": "dns edit",
+              "hits": [
+                "dns edit",
+                "dns scopes",
+                "id",
+                "dm",
+                "logout"
+              ],
+              "query": "point my domain at a different IP address",
+              "rank": 1
+            },
+            {
+              "expected": "dns scopes",
+              "hits": [
+                "dns scopes",
+                "dns edit",
+                "login",
+                "dm",
+                "doctor"
+              ],
+              "query": "allow the app to administer records in my DNS zone",
+              "rank": 1
+            },
+            {
+              "expected": "deploy",
+              "hits": [
+                "deploy",
+                "import",
+                "export",
+                "doctor",
+                "logs"
+              ],
+              "query": "ship the compiled service to the live environment",
+              "rank": 1
+            },
+            {
+              "expected": "logs",
+              "hits": [
+                "doctor",
+                "id",
+                "logs",
+                "changelog",
+                "unmute"
+              ],
+              "query": "show the errors emitted by the running service",
+              "rank": 3
+            },
+            {
+              "expected": "doctor",
+              "hits": [
+                "logs",
+                "restore",
+                "backup",
+                "mute",
+                "inbox"
+              ],
+              "query": "troubleshoot why the remote endpoint is unreachable",
+              "rank": null
+            },
+            {
+              "expected": "mute",
+              "hits": [
+                "unmute",
+                "mute",
+                "logout",
+                "id",
+                "changelog"
+              ],
+              "query": "pause interruptions from the other bots",
+              "rank": 2
+            },
+            {
+              "expected": "unmute",
+              "hits": [
+                "unmute",
+                "inbox",
+                "mute",
+                "outbox",
+                "dm"
+              ],
+              "query": "stop blocking messages from other agents",
+              "rank": 1
+            },
+            {
+              "expected": "dm",
+              "hits": [
+                "file send",
+                "inbox",
+                "dm",
+                "id",
+                "unmute"
+              ],
+              "query": "send a secret note directly to one teammate",
+              "rank": 3
+            },
+            {
+              "expected": "inbox",
+              "hits": [
+                "id",
+                "mute",
+                "logout",
+                "changelog",
+                "unmute"
+              ],
+              "query": "show correspondence addressed to this session",
+              "rank": null
+            },
+            {
+              "expected": "outbox",
+              "hits": [
+                "outbox",
+                "inbox",
+                "mute",
+                "verify",
+                "unmute"
+              ],
+              "query": "check the queue of messages I have sent",
+              "rank": 1
+            },
+            {
+              "expected": "file send",
+              "hits": [
+                "file send",
+                "dm",
+                "profile",
+                "inbox",
+                "unmute"
+              ],
+              "query": "give another agent a copy of this PDF",
+              "rank": 1
+            },
+            {
+              "expected": "file receive",
+              "hits": [
+                "file receive",
+                "dm",
+                "profile",
+                "verify",
+                "file send"
+              ],
+              "query": "accept a teammate's offered download",
+              "rank": 1
+            },
+            {
+              "expected": "pay",
+              "hits": [
+                "wallet balance",
+                "pay",
+                "file send",
+                "outbox",
+                "file receive"
+              ],
+              "query": "settle an invoice by transferring funds",
+              "rank": 2
+            },
+            {
+              "expected": "wallet balance",
+              "hits": [
+                "pay",
+                "verify",
+                "wallet balance",
+                "outbox",
+                "search"
+              ],
+              "query": "check how much spending money remains",
+              "rank": 3
+            },
+            {
+              "expected": "profile",
+              "hits": [
+                "profile",
+                "dns scopes",
+                "doctor",
+                "logout",
+                "id"
+              ],
+              "query": "inspect the name and abilities advertised by this bot",
+              "rank": 1
+            },
+            {
+              "expected": "changelog",
+              "hits": [
+                "changelog",
+                "inbox",
+                "wallet balance",
+                "logs",
+                "update"
+              ],
+              "query": "read the differences between released versions",
+              "rank": 1
+            },
+            {
+              "expected": "update",
+              "hits": [
+                "update",
+                "inbox",
+                "wallet balance",
+                "login",
+                "changelog"
+              ],
+              "query": "upgrade this tool to the current version",
+              "rank": 1
+            },
+            {
+              "expected": "id",
+              "hits": [
+                "id",
+                "logout",
+                "mute",
+                "unmute",
+                "login"
+              ],
+              "query": "print the cryptographic identity of this session",
+              "rank": 1
+            },
+            {
+              "expected": "search",
+              "hits": [
+                "search",
+                "export",
+                "import",
+                "list",
+                "verify"
+              ],
+              "query": "locate a useful excerpt from the collection",
+              "rank": 1
+            },
+            {
+              "expected": "embed",
+              "hits": [
+                "embed",
+                "import",
+                "search",
+                "file receive",
+                "help"
+              ],
+              "query": "turn sentences into numerical representations",
+              "rank": 1
+            },
+            {
+              "expected": "import",
+              "hits": [
+                "export",
+                "import",
+                "search",
+                "file receive",
+                "list"
+              ],
+              "query": "bring an existing portable collection into the app",
+              "rank": 2
+            },
+            {
+              "expected": "export",
+              "hits": [
+                "export",
+                "import",
+                "backup",
+                "search",
+                "file send"
+              ],
+              "query": "save the collection as a bundle for another machine",
+              "rank": 1
+            },
+            {
+              "expected": "verify",
+              "hits": [
+                "verify",
+                "export",
+                "import",
+                "profile",
+                "wallet balance"
+              ],
+              "query": "check whether a bundle's bytes were tampered with",
+              "rank": 1
+            },
+            {
+              "expected": "list",
+              "hits": [
+                "list",
+                "export",
+                "import",
+                "search",
+                "outbox"
+              ],
+              "query": "enumerate the collections on this device",
+              "rank": 1
+            },
+            {
+              "expected": "help",
+              "hits": [
+                "id",
+                "list",
+                "help",
+                "changelog",
+                "profile"
+              ],
+              "query": "show me the available flags and required parameters",
+              "rank": 3
+            }
+          ],
+          "top1": 18,
+          "top5": 28
+        },
+        "lexical": {
+          "latency": {
+            "p50_us": 1.75,
+            "p95_us": 2.292,
+            "samples": 30
+          },
+          "mrr_at_5": 0.5055555555555555,
+          "queries": 30,
+          "results": [
+            {
+              "expected": "backup",
+              "hits": [],
+              "query": "make a safety copy before I touch these files",
+              "rank": null
+            },
+            {
+              "expected": "restore",
+              "hits": [
+                "restore",
+                "backup"
+              ],
+              "query": "roll my project back to its saved state",
+              "rank": 1
+            },
+            {
+              "expected": "delete",
+              "hits": [
+                "delete",
+                "outbox"
+              ],
+              "query": "destroy one of the stored recovery points",
+              "rank": 1
+            },
+            {
+              "expected": "login",
+              "hits": [
+                "wallet balance"
+              ],
+              "query": "authorize this machine to access my account",
+              "rank": null
+            },
+            {
+              "expected": "logout",
+              "hits": [
+                "restore",
+                "logout"
+              ],
+              "query": "invalidate the credentials saved on this machine",
+              "rank": 2
+            },
+            {
+              "expected": "dns edit",
+              "hits": [
+                "dns edit",
+                "dns scopes"
+              ],
+              "query": "point my domain at a different IP address",
+              "rank": 1
+            },
+            {
+              "expected": "dns scopes",
+              "hits": [
+                "dns edit",
+                "dns scopes"
+              ],
+              "query": "allow the app to administer records in my DNS zone",
+              "rank": 2
+            },
+            {
+              "expected": "deploy",
+              "hits": [
+                "doctor"
+              ],
+              "query": "ship the compiled service to the live environment",
+              "rank": null
+            },
+            {
+              "expected": "logs",
+              "hits": [
+                "doctor",
+                "list",
+                "changelog",
+                "id"
+              ],
+              "query": "show the errors emitted by the running service",
+              "rank": null
+            },
+            {
+              "expected": "doctor",
+              "hits": [],
+              "query": "troubleshoot why the remote endpoint is unreachable",
+              "rank": null
+            },
+            {
+              "expected": "mute",
+              "hits": [],
+              "query": "pause interruptions from the other bots",
+              "rank": null
+            },
+            {
+              "expected": "unmute",
+              "hits": [
+                "inbox",
+                "outbox",
+                "unmute",
+                "mute"
+              ],
+              "query": "stop blocking messages from other agents",
+              "rank": 3
+            },
+            {
+              "expected": "dm",
+              "hits": [
+                "file send"
+              ],
+              "query": "send a secret note directly to one teammate",
+              "rank": null
+            },
+            {
+              "expected": "inbox",
+              "hits": [
+                "id",
+                "list",
+                "changelog",
+                "logout",
+                "unmute"
+              ],
+              "query": "show correspondence addressed to this session",
+              "rank": null
+            },
+            {
+              "expected": "outbox",
+              "hits": [
+                "verify",
+                "inbox",
+                "outbox",
+                "unmute",
+                "mute"
+              ],
+              "query": "check the queue of messages I have sent",
+              "rank": 3
+            },
+            {
+              "expected": "file send",
+              "hits": [
+                "file send",
+                "dm",
+                "inbox",
+                "unmute",
+                "mute"
+              ],
+              "query": "give another agent a copy of this PDF",
+              "rank": 1
+            },
+            {
+              "expected": "file receive",
+              "hits": [
+                "file receive",
+                "id",
+                "verify",
+                "dns edit",
+                "profile"
+              ],
+              "query": "accept a teammate's offered download",
+              "rank": 1
+            },
+            {
+              "expected": "pay",
+              "hits": [
+                "wallet balance"
+              ],
+              "query": "settle an invoice by transferring funds",
+              "rank": null
+            },
+            {
+              "expected": "wallet balance",
+              "hits": [
+                "pay",
+                "verify"
+              ],
+              "query": "check how much spending money remains",
+              "rank": null
+            },
+            {
+              "expected": "profile",
+              "hits": [
+                "doctor",
+                "profile",
+                "dns scopes"
+              ],
+              "query": "inspect the name and abilities advertised by this bot",
+              "rank": 2
+            },
+            {
+              "expected": "changelog",
+              "hits": [
+                "changelog",
+                "inbox",
+                "logs",
+                "wallet balance",
+                "profile"
+              ],
+              "query": "read the differences between released versions",
+              "rank": 1
+            },
+            {
+              "expected": "update",
+              "hits": [
+                "update",
+                "inbox",
+                "login",
+                "id",
+                "wallet balance"
+              ],
+              "query": "upgrade this tool to the current version",
+              "rank": 1
+            },
+            {
+              "expected": "id",
+              "hits": [
+                "id",
+                "logout",
+                "unmute",
+                "mute"
+              ],
+              "query": "print the cryptographic identity of this session",
+              "rank": 1
+            },
+            {
+              "expected": "search",
+              "hits": [
+                "search",
+                "import",
+                "export"
+              ],
+              "query": "locate a useful excerpt from the collection",
+              "rank": 1
+            },
+            {
+              "expected": "embed",
+              "hits": [
+                "import",
+                "embed",
+                "file receive"
+              ],
+              "query": "turn sentences into numerical representations",
+              "rank": 2
+            },
+            {
+              "expected": "import",
+              "hits": [
+                "import",
+                "export",
+                "search",
+                "embed",
+                "file receive"
+              ],
+              "query": "bring an existing portable collection into the app",
+              "rank": 1
+            },
+            {
+              "expected": "export",
+              "hits": [
+                "import",
+                "export",
+                "backup",
+                "file send",
+                "search"
+              ],
+              "query": "save the collection as a bundle for another machine",
+              "rank": 2
+            },
+            {
+              "expected": "verify",
+              "hits": [
+                "verify",
+                "import",
+                "export",
+                "id",
+                "dns edit"
+              ],
+              "query": "check whether a bundle's bytes were tampered with",
+              "rank": 1
+            },
+            {
+              "expected": "list",
+              "hits": [
+                "list"
+              ],
+              "query": "enumerate the collections on this device",
+              "rank": 1
+            },
+            {
+              "expected": "help",
+              "hits": [
+                "list",
+                "wallet balance",
+                "changelog",
+                "id"
+              ],
+              "query": "show me the available flags and required parameters",
+              "rank": null
+            }
+          ],
+          "top1": 12,
+          "top5": 19
+        },
+        "semantic": {
+          "latency": {
+            "p50_us": 3140.125,
+            "p95_us": 3877.0,
+            "samples": 30
+          },
+          "mrr_at_5": 0.7900000000000001,
+          "queries": 30,
+          "results": [
+            {
+              "expected": "backup",
+              "hits": [
+                "export",
+                "file receive",
+                "dm",
+                "file send",
+                "backup"
+              ],
+              "query": "make a safety copy before I touch these files",
+              "rank": 5
+            },
+            {
+              "expected": "restore",
+              "hits": [
+                "backup",
+                "restore",
+                "import",
+                "export",
+                "logs"
+              ],
+              "query": "roll my project back to its saved state",
+              "rank": 2
+            },
+            {
+              "expected": "delete",
+              "hits": [
+                "delete",
+                "restore",
+                "backup",
+                "outbox",
+                "logs"
+              ],
+              "query": "destroy one of the stored recovery points",
+              "rank": 1
+            },
+            {
+              "expected": "login",
+              "hits": [
+                "wallet balance",
+                "login",
+                "dns scopes",
+                "profile",
+                "pay"
+              ],
+              "query": "authorize this machine to access my account",
+              "rank": 2
+            },
+            {
+              "expected": "logout",
+              "hits": [
+                "login",
+                "id",
+                "logout",
+                "verify",
+                "dm"
+              ],
+              "query": "invalidate the credentials saved on this machine",
+              "rank": 3
+            },
+            {
+              "expected": "dns edit",
+              "hits": [
+                "dns edit",
+                "dns scopes",
+                "id",
+                "dm",
+                "logout"
+              ],
+              "query": "point my domain at a different IP address",
+              "rank": 1
+            },
+            {
+              "expected": "dns scopes",
+              "hits": [
+                "dns scopes",
+                "dns edit",
+                "login",
+                "dm",
+                "doctor"
+              ],
+              "query": "allow the app to administer records in my DNS zone",
+              "rank": 1
+            },
+            {
+              "expected": "deploy",
+              "hits": [
+                "deploy",
+                "import",
+                "export",
+                "logs",
+                "file receive"
+              ],
+              "query": "ship the compiled service to the live environment",
+              "rank": 1
+            },
+            {
+              "expected": "logs",
+              "hits": [
+                "logs",
+                "doctor",
+                "unmute",
+                "mute",
+                "restore"
+              ],
+              "query": "show the errors emitted by the running service",
+              "rank": 1
+            },
+            {
+              "expected": "doctor",
+              "hits": [
+                "logs",
+                "restore",
+                "backup",
+                "mute",
+                "inbox"
+              ],
+              "query": "troubleshoot why the remote endpoint is unreachable",
+              "rank": null
+            },
+            {
+              "expected": "mute",
+              "hits": [
+                "unmute",
+                "mute",
+                "logout",
+                "id",
+                "changelog"
+              ],
+              "query": "pause interruptions from the other bots",
+              "rank": 2
+            },
+            {
+              "expected": "unmute",
+              "hits": [
+                "unmute",
+                "mute",
+                "inbox",
+                "dm",
+                "file send"
+              ],
+              "query": "stop blocking messages from other agents",
+              "rank": 1
+            },
+            {
+              "expected": "dm",
+              "hits": [
+                "file send",
+                "inbox",
+                "dm",
+                "id",
+                "unmute"
+              ],
+              "query": "send a secret note directly to one teammate",
+              "rank": 3
+            },
+            {
+              "expected": "inbox",
+              "hits": [
+                "id",
+                "mute",
+                "inbox",
+                "logout",
+                "unmute"
+              ],
+              "query": "show correspondence addressed to this session",
+              "rank": 3
+            },
+            {
+              "expected": "outbox",
+              "hits": [
+                "outbox",
+                "inbox",
+                "mute",
+                "unmute",
+                "logs"
+              ],
+              "query": "check the queue of messages I have sent",
+              "rank": 1
+            },
+            {
+              "expected": "file send",
+              "hits": [
+                "file send",
+                "profile",
+                "dm",
+                "inbox",
+                "export"
+              ],
+              "query": "give another agent a copy of this PDF",
+              "rank": 1
+            },
+            {
+              "expected": "file receive",
+              "hits": [
+                "file receive",
+                "file send",
+                "pay",
+                "update",
+                "inbox"
+              ],
+              "query": "accept a teammate's offered download",
+              "rank": 1
+            },
+            {
+              "expected": "pay",
+              "hits": [
+                "pay",
+                "wallet balance",
+                "file send",
+                "outbox",
+                "file receive"
+              ],
+              "query": "settle an invoice by transferring funds",
+              "rank": 1
+            },
+            {
+              "expected": "wallet balance",
+              "hits": [
+                "wallet balance",
+                "pay",
+                "verify",
+                "outbox",
+                "search"
+              ],
+              "query": "check how much spending money remains",
+              "rank": 1
+            },
+            {
+              "expected": "profile",
+              "hits": [
+                "profile",
+                "logout",
+                "id",
+                "dm",
+                "verify"
+              ],
+              "query": "inspect the name and abilities advertised by this bot",
+              "rank": 1
+            },
+            {
+              "expected": "changelog",
+              "hits": [
+                "changelog",
+                "update",
+                "inbox",
+                "wallet balance",
+                "logs"
+              ],
+              "query": "read the differences between released versions",
+              "rank": 1
+            },
+            {
+              "expected": "update",
+              "hits": [
+                "update",
+                "changelog",
+                "backup",
+                "restore",
+                "deploy"
+              ],
+              "query": "upgrade this tool to the current version",
+              "rank": 1
+            },
+            {
+              "expected": "id",
+              "hits": [
+                "id",
+                "logout",
+                "login",
+                "wallet balance",
+                "verify"
+              ],
+              "query": "print the cryptographic identity of this session",
+              "rank": 1
+            },
+            {
+              "expected": "search",
+              "hits": [
+                "search",
+                "list",
+                "export",
+                "import",
+                "verify"
+              ],
+              "query": "locate a useful excerpt from the collection",
+              "rank": 1
+            },
+            {
+              "expected": "embed",
+              "hits": [
+                "embed",
+                "search",
+                "help",
+                "list",
+                "inbox"
+              ],
+              "query": "turn sentences into numerical representations",
+              "rank": 1
+            },
+            {
+              "expected": "import",
+              "hits": [
+                "export",
+                "import",
+                "search",
+                "list",
+                "dm"
+              ],
+              "query": "bring an existing portable collection into the app",
+              "rank": 2
+            },
+            {
+              "expected": "export",
+              "hits": [
+                "export",
+                "import",
+                "backup",
+                "outbox",
+                "list"
+              ],
+              "query": "save the collection as a bundle for another machine",
+              "rank": 1
+            },
+            {
+              "expected": "verify",
+              "hits": [
+                "verify",
+                "export",
+                "import",
+                "wallet balance",
+                "logs"
+              ],
+              "query": "check whether a bundle's bytes were tampered with",
+              "rank": 1
+            },
+            {
+              "expected": "list",
+              "hits": [
+                "export",
+                "list",
+                "import",
+                "search",
+                "outbox"
+              ],
+              "query": "enumerate the collections on this device",
+              "rank": 2
+            },
+            {
+              "expected": "help",
+              "hits": [
+                "help",
+                "id",
+                "profile",
+                "inbox",
+                "verify"
+              ],
+              "query": "show me the available flags and required parameters",
+              "rank": 1
+            }
+          ],
+          "top1": 20,
+          "top5": 29
+        }
+      },
+      "suite": "fresh_probes"
+    }
+  ],
+  "query_encode": {
+    "p50_us": 3303.625,
+    "p95_us": 4845.4580000000005,
+    "samples": 60
+  },
+  "rust": "rustc 1.99.0 (b940084d7 2026-09-28)",
+  "scales": [
+    {
+      "build_ms": 0.207333,
+      "connectivity": 16,
+      "default_expansion_search": 64,
+      "expansion_add": 128,
+      "hardware_acceleration": "neon",
+      "load_from_memory": {
+        "p50_us": 11.958,
+        "p95_us": 22.125,
+        "samples": 10
+      },
+      "pocket_encoder_storage": {
+        "serialized_bytes": 46556,
+        "validated_load": {
+          "p50_us": 6.25,
+          "p95_us": 6.958,
+          "samples": 10
+        }
+      },
+      "rust_vector_payload_bytes": 46080,
+      "searches": [
+        {
+          "backend": "rust_scan",
+          "latency": {
+            "p50_us": 3.834,
+            "p95_us": 4.667000000000001,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_exact",
+          "latency": {
+            "p50_us": 2.584,
+            "p95_us": 3.416,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_hnsw",
+          "latency": {
+            "p50_us": 4.75,
+            "p95_us": 5.042,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "pocket_encoder",
+          "latency": {
+            "p50_us": 3.709,
+            "p95_us": 4.459,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "rust_scan",
+          "latency": {
+            "p50_us": 3.7079999999999997,
+            "p95_us": 4.792,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 30,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_exact",
+          "latency": {
+            "p50_us": 3.75,
+            "p95_us": 3.917,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 30,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_hnsw",
+          "latency": {
+            "p50_us": 4.958,
+            "p95_us": 6.083,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 30,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "pocket_encoder",
+          "latency": {
+            "p50_us": 3.792,
+            "p95_us": 3.834,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 30,
+          "top1_agreement": 1.0
+        }
+      ],
+      "serialized_bytes": 50648,
+      "synthetic": false,
+      "usearch_memory_lower_bound_bytes": 16779312,
+      "vector_decoding": {
+        "json": {
+          "p50_us": 182.709,
+          "p95_us": 189.33399999999997,
+          "samples": 10
+        },
+        "json_bytes": 140941,
+        "method": "In-memory decoding of vectors only into Vec<Vec<f32>>; no document loading, norm validation, lexical indexing or disk I/O. Packed F32 is an experimental comparison, not an implemented production format.",
+        "packed_f32": {
+          "p50_us": 0.834,
+          "p95_us": 2.209,
+          "samples": 10
+        },
+        "packed_f32_bytes": 46080
+      },
+      "vectors": 30
+    },
+    {
+      "build_ms": 23.717334,
+      "connectivity": 16,
+      "default_expansion_search": 64,
+      "expansion_add": 128,
+      "hardware_acceleration": "neon",
+      "load_from_memory": {
+        "p50_us": 73.917,
+        "p95_us": 121.709,
+        "samples": 10
+      },
+      "pocket_encoder_storage": {
+        "serialized_bytes": 786908,
+        "validated_load": {
+          "p50_us": 78.833,
+          "p95_us": 84.291,
+          "samples": 10
+        }
+      },
+      "rust_vector_payload_bytes": 786432,
+      "searches": [
+        {
+          "backend": "rust_scan",
+          "latency": {
+            "p50_us": 65.542,
+            "p95_us": 77.958,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_exact",
+          "latency": {
+            "p50_us": 34.625,
+            "p95_us": 38.875,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_hnsw",
+          "latency": {
+            "p50_us": 30.875,
+            "p95_us": 36.25,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "pocket_encoder",
+          "latency": {
+            "p50_us": 60.541000000000004,
+            "p95_us": 71.416,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "rust_scan",
+          "latency": {
+            "p50_us": 65.33300000000001,
+            "p95_us": 77.875,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_exact",
+          "latency": {
+            "p50_us": 53.125,
+            "p95_us": 64.75,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.9833333333333333,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_hnsw",
+          "latency": {
+            "p50_us": 44.042,
+            "p95_us": 50.125,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.5333333333333333,
+          "recall_at_k": 0.9875,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "pocket_encoder",
+          "latency": {
+            "p50_us": 61.16700000000001,
+            "p95_us": 74.458,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 1.0
+        }
+      ],
+      "serialized_bytes": 862652,
+      "synthetic": true,
+      "usearch_memory_lower_bound_bytes": 16783168,
+      "vector_decoding": {
+        "json": {
+          "p50_us": 3258.125,
+          "p95_us": 3307.459,
+          "samples": 10
+        },
+        "json_bytes": 2404158,
+        "method": "In-memory decoding of vectors only into Vec<Vec<f32>>; no document loading, norm validation, lexical indexing or disk I/O. Packed F32 is an experimental comparison, not an implemented production format.",
+        "packed_f32": {
+          "p50_us": 17.375,
+          "p95_us": 20.083000000000002,
+          "samples": 10
+        },
+        "packed_f32_bytes": 786432
+      },
+      "vectors": 512
+    },
+    {
+      "build_ms": 380.287625,
+      "connectivity": 16,
+      "default_expansion_search": 64,
+      "expansion_add": 128,
+      "hardware_acceleration": "neon",
+      "load_from_memory": {
+        "p50_us": 500.417,
+        "p95_us": 678.833,
+        "samples": 10
+      },
+      "pocket_encoder_storage": {
+        "serialized_bytes": 6291932,
+        "validated_load": {
+          "p50_us": 616.7090000000001,
+          "p95_us": 674.334,
+          "samples": 10
+        }
+      },
+      "rust_vector_payload_bytes": 6291456,
+      "searches": [
+        {
+          "backend": "rust_scan",
+          "latency": {
+            "p50_us": 548.5419999999999,
+            "p95_us": 613.9169999999999,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_exact",
+          "latency": {
+            "p50_us": 262.08299999999997,
+            "p95_us": 281.416,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_hnsw",
+          "latency": {
+            "p50_us": 32.75,
+            "p95_us": 41.875,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.03333333333333333,
+          "recall_at_k": 0.54,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 0.7166666666666667
+        },
+        {
+          "backend": "pocket_encoder",
+          "latency": {
+            "p50_us": 486.125,
+            "p95_us": 528.9580000000001,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "rust_scan",
+          "latency": {
+            "p50_us": 543.167,
+            "p95_us": 591.1669999999999,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_exact",
+          "latency": {
+            "p50_us": 335.625,
+            "p95_us": 358.66700000000003,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_hnsw",
+          "latency": {
+            "p50_us": 47.416999999999994,
+            "p95_us": 58.334,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.0,
+          "recall_at_k": 0.36883333333333335,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 0.7166666666666667
+        },
+        {
+          "backend": "pocket_encoder",
+          "latency": {
+            "p50_us": 488.375,
+            "p95_us": 548.292,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_hnsw_expansion_1024",
+          "latency": {
+            "p50_us": 372.791,
+            "p95_us": 424.41700000000003,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.3333333333333333,
+          "recall_at_k": 0.7966666666666666,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 0.8
+        },
+        {
+          "backend": "usearch_hnsw_expansion_1024",
+          "latency": {
+            "p50_us": 376.084,
+            "p95_us": 406.70799999999997,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.0,
+          "recall_at_k": 0.7095,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 0.8
+        }
+      ],
+      "serialized_bytes": 6899752,
+      "synthetic": true,
+      "usearch_memory_lower_bound_bytes": 16811840,
+      "vector_decoding": {
+        "json": {
+          "p50_us": 26130.75,
+          "p95_us": 26512.916,
+          "samples": 10
+        },
+        "json_bytes": 19231499,
+        "method": "In-memory decoding of vectors only into Vec<Vec<f32>>; no document loading, norm validation, lexical indexing or disk I/O. Packed F32 is an experimental comparison, not an implemented production format.",
+        "packed_f32": {
+          "p50_us": 146.666,
+          "p95_us": 491.37499999999994,
+          "samples": 10
+        },
+        "packed_f32_bytes": 6291456
+      },
+      "vectors": 4096
+    },
+    {
+      "build_ms": 3593.913416,
+      "connectivity": 16,
+      "default_expansion_search": 64,
+      "expansion_add": 128,
+      "hardware_acceleration": "neon",
+      "load_from_memory": {
+        "p50_us": 4487.375,
+        "p95_us": 4851.709,
+        "samples": 10
+      },
+      "pocket_encoder_storage": null,
+      "rust_vector_payload_bytes": 50331648,
+      "searches": [
+        {
+          "backend": "rust_scan",
+          "latency": {
+            "p50_us": 4529.0,
+            "p95_us": 6404.667,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_exact",
+          "latency": {
+            "p50_us": 2149.584,
+            "p95_us": 2386.875,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_hnsw",
+          "latency": {
+            "p50_us": 45.458,
+            "p95_us": 84.875,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.0,
+          "recall_at_k": 0.20666666666666667,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 0.3333333333333333
+        },
+        {
+          "backend": "rust_scan",
+          "latency": {
+            "p50_us": 4547.125,
+            "p95_us": 5391.792,
+            "samples": 300
+          },
+          "ordered_match_rate": 1.0,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_exact",
+          "latency": {
+            "p50_us": 2534.625,
+            "p95_us": 2792.167,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.95,
+          "recall_at_k": 1.0,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 1.0
+        },
+        {
+          "backend": "usearch_hnsw",
+          "latency": {
+            "p50_us": 53.208999999999996,
+            "p95_us": 77.0,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.0,
+          "recall_at_k": 0.10433333333333333,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 0.4
+        },
+        {
+          "backend": "usearch_hnsw_expansion_1024",
+          "latency": {
+            "p50_us": 542.7919999999999,
+            "p95_us": 690.834,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.05,
+          "recall_at_k": 0.4533333333333333,
+          "requested_k": 5,
+          "returned_k": 5,
+          "top1_agreement": 0.6333333333333333
+        },
+        {
+          "backend": "usearch_hnsw_expansion_1024",
+          "latency": {
+            "p50_us": 595.0830000000001,
+            "p95_us": 843.25,
+            "samples": 300
+          },
+          "ordered_match_rate": 0.0,
+          "recall_at_k": 0.3155,
+          "requested_k": 100,
+          "returned_k": 100,
+          "top1_agreement": 0.6333333333333333
+        }
+      ],
+      "serialized_bytes": 55199340,
+      "synthetic": true,
+      "usearch_memory_lower_bound_bytes": 67372864,
+      "vector_decoding": null,
+      "vectors": 32768
+    }
+  ],
+  "usearch_version": "2.26.5"
+}

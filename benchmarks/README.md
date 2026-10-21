@@ -1,5 +1,8 @@
 # Measurements
 
+See the [USearch experiment](usearch/README.md) for vector-search, loading-format
+and encoder-quality comparisons measured on 2026-10-20.
+
 Apple M4, Rust 1.99.0, release build, 2026-10-19 UTC. The complete inputs and
 per-query ranks are in `retrieval.json` and `results.json`. This is a handwritten
 30-query English task smoke test, not a held-out evaluation or general model

@@ -247,10 +247,10 @@ dependencies = [
 
 [[package]]
 name = "clap-how-to"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "clap",
- "pocket-encoder 0.1.1",
+ "pocket-encoder",
  "serde",
  "serde_json",
  "thiserror 2.0.21",
@@ -989,33 +989,18 @@ checksum = "f6b464fbc74e149a392436b17d523f769e057cb6877f6a5c4618bc6f11800548"
 
 [[package]]
 name = "pocket-encoder"
-version = "0.1.0"
+version = "0.1.2"
 dependencies = [
  "candle-core",
  "candle-nn",
  "candle-transformers",
+ "gemm",
  "half",
+ "libm",
  "safetensors 0.7.0",
  "serde",
  "serde_json",
  "sha2",
- "thiserror 2.0.21",
- "tokenizers",
-]
-
-[[package]]
-name = "pocket-encoder"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "256178cb852d3105e97e00cd821f026de5f32797565f325ae2529a6122306d0d"
-dependencies = [
- "candle-core",
- "candle-nn",
- "candle-transformers",
- "half",
- "safetensors 0.7.0",
- "serde",
- "serde_json",
  "thiserror 2.0.21",
  "tokenizers",
 ]
