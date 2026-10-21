@@ -6,12 +6,14 @@
 
 mod corpus;
 mod index;
+mod sources;
 
 use clap::{Args, Command};
 pub use corpus::{Document, Source, command_documents, markdown_documents};
 pub use index::{Hit, Index, Mode, PreparedIndex};
 pub use pocket_encoder::{Encoder, ModelInfo, model_info};
 use serde::Serialize;
+pub use sources::{DynamicSource, SearchResults, SourceIssue, WeightedSource, lexical_candidates};
 
 /// Errors are returned to the caller; this library does not print or exit.
 #[derive(Debug, thiserror::Error)]
@@ -25,6 +27,9 @@ pub enum Error {
     /// The compiled model could not be initialized.
     #[error("bundled semantic encoder: {0}")]
     Encoder(String),
+    /// A caller-owned dynamic source could not be read or prepared.
+    #[error("dynamic source: {0}")]
+    Source(String),
 }
 
 /// Result type used by the library.
